@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.TicketReclamationController">
     <children>
-        <!-- Titre amélioré -->
+
         <Label layoutX="200.0" layoutY="20.0" prefHeight="30.0" prefWidth="400.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Formulaire de Réclamation" textAlignment="CENTER">
             <font>
                 <Font name="Arial Bold" size="22.0" />

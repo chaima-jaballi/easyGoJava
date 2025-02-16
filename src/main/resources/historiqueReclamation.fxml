@@ -12,10 +12,10 @@
 <AnchorPane prefHeight="474.0" prefWidth="689.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.2" fx:controller="com.esprit.tn.pidev.controllers.HistoriqueReclamationController">
     <children>
         <VBox alignment="CENTER" prefHeight="474.0" prefWidth="661.0" spacing="20">
-            <!-- Titre amélioré -->
+
             <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Historique des Réclamations" />
 
-            <!-- Table améliorée avec des colonnes élargies et style de bordure -->
+
             <TableView fx:id="tableHistorique" prefHeight="350.0" prefWidth="640.0" style="-fx-border-color: #ccc; -fx-border-width: 1px;">
                 <columns>
                     <TableColumn fx:id="colId" minWidth="50.0" prefWidth="100.0" text="ID" />
@@ -26,7 +26,7 @@
                 </columns>
             </TableView>
 
-            <!-- HBox amélioré avec des espacements et un fond léger -->
+
             <HBox alignment="CENTER" spacing="20" style="-fx-background-color: #f5f5f5; -fx-padding: 10;">
                 <Button fx:id="btnRefresh" text="Rafraîchir" prefWidth="120.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;" />
                 <Button fx:id="btnRetour" text="Retour" prefWidth="120.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;" />
