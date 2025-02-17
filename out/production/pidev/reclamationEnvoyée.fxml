@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.ConfirmationController">
+    <children>
+        <VBox alignment="CENTER" layoutX="100.0" layoutY="50.0" spacing="20" prefWidth="300.0">
+            <!-- Icône de confirmation -->
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@checkmark.png" />
+                </image>
+            </ImageView>
+
+            <!-- Message de confirmation -->
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;" text="Réclamation envoyée avec succès !" wrapText="true" />
+
+            <!-- Bouton Retour -->
+            <Button fx:id="btnRetour" text="Retour" prefWidth="120.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;" />
+        </VBox>
+    </children>
+</AnchorPane>
