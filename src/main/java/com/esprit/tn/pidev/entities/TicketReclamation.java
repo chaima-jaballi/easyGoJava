@@ -1,5 +1,6 @@
 package com.esprit.tn.pidev.entities;
 import java.util.Objects;
+import java.sql.Timestamp;
 public class TicketReclamation {
     private int id;
     private int user_id;
@@ -7,6 +8,8 @@ public class TicketReclamation {
     private String statut;
     private String description;
     private Timestamp dateCreation;
+
+    public TicketReclamation(){}
 
 
     public TicketReclamation(int id, int user_id, String categorie, String statut, String description,Timestamp dateCreation) {
@@ -34,7 +37,7 @@ public class TicketReclamation {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public String getDateCreation() { return dateCreation; }
+    public Timestamp getDateCreation() { return dateCreation; }
     public void setDateCreation(Timestamp dateCreation) { this.dateCreation = dateCreation; }
     @Override
     public int hashCode() {

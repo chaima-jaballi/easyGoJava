@@ -1,5 +1,6 @@
 package com.esprit.tn.pidev.entities;
 import java.util.Objects;
+import java.sql.Timestamp;
 public class HistoriqueReclamation {
     private int id ;
     private int tiketId;
@@ -8,7 +9,7 @@ public class HistoriqueReclamation {
     private int userId;
 
     //constructeurs
-    public HistoriqueReclamation (){
+    public HistoriqueReclamation (int i, int ticketId, String message, Timestamp dateAction, int userId){
 
     }
 
@@ -18,11 +19,16 @@ public HistoriqueReclamation(int userId,String message,Timestamp dateAction,int 
         this.dateAction=dateAction;
         this.tiketId=tiketId;
 }
+
+    public HistoriqueReclamation() {
+
+    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public int getTicketId() { return ticketId; }
-    public void setTicketId(int ticketId) { this.ticketId = ticketId; }
+    public int getTicketId() { return tiketId; }
+    public void setTicketId(int ticketId) { this.tiketId = ticketId; }
 
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }

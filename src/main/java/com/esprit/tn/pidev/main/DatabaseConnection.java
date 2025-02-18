@@ -5,29 +5,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
+    private static DatabaseConnection instance;
+    private Connection cnx;
 
-    Connection cnx;
-
-
-
-    public static DatabaseConnection instance;
-    public DatabaseConnection(){
-
-        String Url="jdbc:mysql://localhost/pidev";
-        String Username="root";
-        String Password="";
-
+    private DatabaseConnection() {
         try {
-            cnx= DriverManager.getConnection(Url,Username,Password);
-            System.out.println("Connextion etablie");
+            cnx = DriverManager.getConnection("jdbc:mysql://localhost:3306/pidev", "root", "");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
     public static DatabaseConnection getInstance() {
-        if(instance==null){
-            instance=  new DatabaseConnection();
+        if (instance == null) {
+            instance = new DatabaseConnection(); // Initialisation ici
         }
         return instance;
     }

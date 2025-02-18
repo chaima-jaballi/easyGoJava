@@ -2,6 +2,8 @@ package com.esprit.tn.pidev.services;
 
 import com.esprit.tn.pidev.entities.HistoriqueReclamation;
 import com.esprit.tn.pidev.main.DatabaseConnection;
+import java.sql.Timestamp;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,12 +15,12 @@ public class HistoriqueReclamationService implements Iservice<HistoriqueReclamat
     Connection cnx;
 
     public HistoriqueReclamationService () {
-        cnx = DatabaseConnection.instance.getCnx();
+        cnx = DatabaseConnection.getInstance().getCnx();
     }
 
     @Override
     public void ajouter(HistoriqueReclamation hr) {
-        String req = "INSERT INTO historiquereclamation (ticket_id, message, dateAction, user_id) VALUES (?, ?, ?,?)";
+        String req = "INSERT INTO historiquereclamation (tiketId, message, dateAction, userId) VALUES (?, ?, ?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(req);
             stm.setInt(1, hr.getTicketId());
@@ -39,9 +41,9 @@ public class HistoriqueReclamationService implements Iservice<HistoriqueReclamat
         if (hr.getMessage() != null) {
             modifiedFields.put("message", hr.getMessage());
         }
-       if (hr.getUserId() != 0) {
-           modifiedFields.put("user_id", hr.getUserId());
-       }
+        if (hr.getUserId() != 0) {
+            modifiedFields.put("user_id", hr.getUserId());
+        }
 
 
 
@@ -98,8 +100,8 @@ public class HistoriqueReclamationService implements Iservice<HistoriqueReclamat
                 hr.setId(rs.getInt("id"));
                 hr.setMessage(rs.getString("message"));
                 hr.setDateAction(rs.getTimestamp("dateAction"));
-                hr.setUserId(rs.getInt("user_id"));
-
+                hr.setUserId(rs.getInt("userId"));
+                hr.setTicketId(rs.getInt("tiketId"));
                 hrs.add(hr);
             }
         } catch (SQLException e) {
@@ -119,8 +121,8 @@ public class HistoriqueReclamationService implements Iservice<HistoriqueReclamat
             if (rs.next()) {
                 hr.setId(rs.getInt("id"));
                 hr.setMessage(rs.getString("message"));
-                hr.setDateAction(rs.getTimestamp("dateAction"));
-                hr.setUserId(rs.getInt("user_id"));
+                hr.setDateAction((Timestamp) rs.getTimestamp("dateAction"));
+                hr.setUserId(rs.getInt("userId"));
 
             }
         } catch (SQLException e) {
@@ -141,8 +143,8 @@ public class HistoriqueReclamationService implements Iservice<HistoriqueReclamat
             if (rs.next()) {
                 hr.setId(rs.getInt("id"));
                 hr.setMessage(rs.getString("message"));
-                hr.setDateAction(rs.getTimestamp("dateAction"));
-                hr.setUserId(rs.getInt("user_id"));
+                hr.setDateAction((Timestamp) rs.getTimestamp("dateAction"));
+                hr.setUserId(rs.getInt("userId"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

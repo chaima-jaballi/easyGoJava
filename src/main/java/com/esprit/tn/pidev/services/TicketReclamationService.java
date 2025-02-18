@@ -13,7 +13,7 @@ public class TicketReclamationService implements Iservice<TicketReclamation> {
     Connection cnx;
 
     public TicketReclamationService() {
-        cnx = DatabaseConnection.instance.getCnx();
+        cnx = DatabaseConnection.getInstance().getCnx();
     }
 
     @Override
