@@ -1,45 +1,56 @@
 package com.esprit.tn.pidev.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import com.esprit.tn.pidev.services.TicketReclamationService;
 import com.esprit.tn.pidev.entities.TicketReclamation;
+
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class TicketReclamationController {
 
+    @FXML private Button retourButton;
     @FXML private ComboBox<String> categorieComboBox;
     @FXML private ComboBox<String> statutComboBox;
     @FXML private TextArea descriptionTextArea;
-    @FXML private TextField dateCreationField;
+    @FXML private DatePicker dateCreationField;
     @FXML private Button envoyerButton;
+    @FXML private Button supprimerButton;
 
     private final TicketReclamationService ticketReclamationService = new TicketReclamationService();
 
     @FXML
     public void initialize() {
-        // Initialiser les catégories
+        // Initialisation des catégories et statuts
         categorieComboBox.getItems().addAll("Technique", "Facturation", "Service Client", "Autre");
         categorieComboBox.getSelectionModel().selectFirst();
 
-        // Initialiser les statuts
         statutComboBox.getItems().addAll("En attente", "En cours", "Résolu");
         statutComboBox.getSelectionModel().selectFirst();
 
-        // Remplir automatiquement la date de création
-        dateCreationField.setText(java.time.LocalDate.now().toString());
+        // Remplir la date de création avec la date actuelle
+        dateCreationField.setValue(LocalDate.now());
 
-        // Lier l'action du bouton Envoyer
+        // Actions des boutons
         envoyerButton.setOnAction(event -> envoyerReclamation());
+        retourButton.setOnAction(event -> retournerVersListeReclamation());  // Associer l'action du bouton Retour
+        supprimerButton.setOnAction(event -> supprimerReclamation());
     }
 
     private void envoyerReclamation() {
         String categorie = categorieComboBox.getValue();
         String statut = statutComboBox.getValue();
         String description = descriptionTextArea.getText().trim();
-        String dateText = dateCreationField.getText().trim();
+        LocalDate date = dateCreationField.getValue();
 
-        if (categorie == null || statut == null || description.isEmpty() || dateText.isEmpty()) {
+        if (categorie == null || statut == null || description.isEmpty() || date == null) {
             afficherAlerte("Erreur de saisie", "Tous les champs sont obligatoires.");
             return;
         }
@@ -49,36 +60,96 @@ public class TicketReclamationController {
             return;
         }
 
-        if (!validerDate(dateText)) {
-            afficherAlerte("Erreur de saisie", "Le format de la date est invalide. Utilisez YYYY-MM-DD.");
-            return;
-        }
+        Timestamp timestamp = Timestamp.valueOf(date.atStartOfDay());
 
-        // Convertir la date en Timestamp
-        Timestamp timestamp = Timestamp.valueOf(dateText + " 00:00:00");
-
-        // Créer et ajouter la réclamation avec un user_id = 0
-        TicketReclamation ticketReclamation = new TicketReclamation(0, 0, categorie, statut, description, timestamp);
+        TicketReclamation ticketReclamation = new TicketReclamation(0, 1, categorie, statut, description, timestamp);
         ticketReclamationService.ajouter(ticketReclamation);
 
         afficherAlerte("Succès", "Réclamation envoyée avec succès !");
+        ouvrirFenetreConfirmation();
 
         // Réinitialiser les champs
-        categorieComboBox.getSelectionModel().clearSelection();
-        statutComboBox.getSelectionModel().clearSelection();
+        categorieComboBox.getSelectionModel().selectFirst();
+        statutComboBox.getSelectionModel().selectFirst();
         descriptionTextArea.clear();
-        dateCreationField.setText(java.time.LocalDate.now().toString());
+        dateCreationField.setValue(LocalDate.now());
     }
 
-    private boolean validerDate(String dateText) {
+    private void supprimerReclamation() {
+        descriptionTextArea.clear();
+        categorieComboBox.getSelectionModel().selectFirst();
+        statutComboBox.getSelectionModel().selectFirst();
+        dateCreationField.setValue(LocalDate.now());
+
+        afficherAlerte("Succès", "Réclamation supprimée !");
+    }
+
+    // Chargement de la fenêtre de confirmation après l'alerte
+    private void ouvrirFenetreConfirmation() {
+        Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+        confirmation.setTitle("Confirmation");
+        confirmation.setHeaderText(null);
+        confirmation.setContentText("Votre réclamation a été envoyée avec succès !");
+
+        confirmation.showAndWait();
+
+        // Vérifier si le fichier FXML existe
+        URL fxmlURL = getClass().getResource("/reclamationEnvoyée.fxml");
+        if (fxmlURL == null) {
+            System.err.println("Le fichier FXML reclamationEnvoyee.fxml n'a pas été trouvé !");
+            afficherAlerte("Erreur", "Impossible de charger la fenêtre de confirmation.");
+            return;
+        }
+
         try {
-            java.time.LocalDate.parse(dateText); // Valide le format YYYY-MM-DD
-            return true;
-        } catch (Exception e) {
-            return false;
+            FXMLLoader loader = new FXMLLoader(fxmlURL);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Confirmation");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            afficherAlerte("Erreur", "Impossible de charger la fenêtre de confirmation.");
         }
     }
 
+    // Modification de la méthode retournerVersListeReclamation
+    private void retournerVersListeReclamation() {
+        try {
+            // Charger le fichier FXML pour l'historique des réclamations
+            URL fxmlURL = getClass().getResource("/listeReclamation.fxml");
+
+            // Vérification que le fichier FXML existe
+            if (fxmlURL == null) {
+                System.err.println("Le fichier FXML historiqueReclamation.fxml n'a pas été trouvé !");
+                afficherAlerte("Erreur", "Impossible de charger l'interface Liste des Réclamations.");
+                return;
+            }
+
+            // Charger le fichier FXML dans une nouvelle scène
+            FXMLLoader loader = new FXMLLoader(fxmlURL);
+            Parent root = loader.load();
+
+            // Créer et afficher la nouvelle scène
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Liste des Réclamations");
+            stage.show();
+
+            // Fermer la scène actuelle (facultatif, si tu veux fermer la fenêtre actuelle)
+            Stage currentStage = (Stage) retourButton.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            afficherAlerte("Erreur", "Impossible de charger l'interface Liste des Réclamations.");
+        }
+    }
+
+
+    // Déplacement de la méthode afficherAlerte à l'intérieur de la classe
     private void afficherAlerte(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titre);

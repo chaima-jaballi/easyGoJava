@@ -2,143 +2,66 @@ package com.esprit.tn.pidev.controllers;
 
 import com.esprit.tn.pidev.entities.HistoriqueReclamation;
 import com.esprit.tn.pidev.services.HistoriqueReclamationService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class HistoriqueReclamationController {
 
-    @FXML private TextField ticketIdField;
-    @FXML private TextArea messageTextArea;
-    @FXML private TextField dateActionField;
-    @FXML private TextField userIdField;
-    @FXML private Button envoyerButton;
-    @FXML private Label erreurTicketIdLabel;
-    @FXML private Label erreurMessageLabel;
-    @FXML private Label erreurDateLabel;
-    @FXML private Label erreurUserIdLabel;
+    // Références aux éléments de l'interface
+    @FXML private TableView<HistoriqueReclamation> tableHistorique;
+    @FXML private TableColumn<HistoriqueReclamation, Integer> colId;
+    @FXML private TableColumn<HistoriqueReclamation, Integer> colTicketId;
+    @FXML private TableColumn<HistoriqueReclamation, String> colMessage;
+    @FXML private TableColumn<HistoriqueReclamation, Timestamp> colDateAction;
+    @FXML private TableColumn<HistoriqueReclamation, Integer> colUserId;
 
+
+
+    // Service pour interagir avec la base de données
     private final HistoriqueReclamationService historiqueService = new HistoriqueReclamationService();
 
+    // Méthode d'initialisation appelée automatiquement par JavaFX
     @FXML
     public void initialize() {
-        // Associer l'action du bouton à la méthode envoyerHistorique
-        envoyerButton.setOnAction(event -> envoyerHistorique());
+        // Initialisation des colonnes de la TableView
+        colId.setCellValueFactory(new PropertyValueFactory<>("id")); // Lier à la propriété "id"
+        colTicketId.setCellValueFactory(new PropertyValueFactory<>("ticketId")); // Lier à la propriété "ticketId"
+        colMessage.setCellValueFactory(new PropertyValueFactory<>("message")); // Lier à la propriété "message"
+        colDateAction.setCellValueFactory(new PropertyValueFactory<>("dateAction")); // Lier à la propriété "dateAction"
+        colUserId.setCellValueFactory(new PropertyValueFactory<>("userId")); // Lier à la propriété "userId"
+
+        // Charger les données au démarrage
+        refreshTable();
     }
 
-    private void envoyerHistorique() {
-        // Réinitialiser les messages d'erreur
-        erreurTicketIdLabel.setText("");
-        erreurMessageLabel.setText("");
-        erreurDateLabel.setText("");
-        erreurUserIdLabel.setText("");
+    // Méthode pour rafraîchir les données de la TableView
+    public void refreshTable() {
+        // Récupérer toutes les entrées de l'historique depuis le service
+        ObservableList<HistoriqueReclamation> observableList = FXCollections.observableArrayList(historiqueService.getall());
 
-        // Récupérer les valeurs des champs
-        String ticketIdText = ticketIdField.getText().trim();
-        String message = messageTextArea.getText().trim();
-        String dateText = dateActionField.getText().trim();
-        String userIdText = userIdField.getText().trim();
+        // Afficher les données dans la TableView
+        tableHistorique.setItems(observableList);
 
-        // Validation des champs
-        boolean valide = true;
-
-        // Validation de l'ID du ticket
-        int ticketId = 0;
-        if (ticketIdText.isEmpty()) {
-            erreurTicketIdLabel.setText("L'ID du ticket est obligatoire.");
-            valide = false;
-        } else {
-            try {
-                ticketId = Integer.parseInt(ticketIdText);
-                if (ticketId <= 0) {
-                    erreurTicketIdLabel.setText("L'ID du ticket doit être un nombre positif.");
-                    valide = false;
-                }
-            } catch (NumberFormatException e) {
-                erreurTicketIdLabel.setText("L'ID du ticket doit être un nombre valide.");
-                valide = false;
-            }
-        }
-
-        // Validation du message
-        if (message.isEmpty()) {
-            erreurMessageLabel.setText("Le message ne peut pas être vide.");
-            valide = false;
-        } else if (message.length() > 500) {
-            erreurMessageLabel.setText("Le message ne doit pas dépasser 500 caractères.");
-            valide = false;
-        }
-
-        // Validation de la date d'action
-        Timestamp dateAction = null;
-        if (dateText.isEmpty()) {
-            erreurDateLabel.setText("La date d'action est obligatoire.");
-            valide = false;
-        } else {
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                LocalDateTime localDateTime = LocalDateTime.parse(dateText, formatter);
-                dateAction = Timestamp.valueOf(localDateTime);
-            } catch (DateTimeParseException e) {
-                erreurDateLabel.setText("Le format de la date est invalide. Utilisez le format YYYY-MM-DD HH:MM:SS.");
-                valide = false;
-            }
-        }
-
-        // Validation de l'ID de l'utilisateur
-        int userId = 0;
-        if (userIdText.isEmpty()) {
-            erreurUserIdLabel.setText("L'ID de l'utilisateur est obligatoire.");
-            valide = false;
-        } else {
-            try {
-                userId = Integer.parseInt(userIdText);
-                if (userId <= 0) {
-                    erreurUserIdLabel.setText("L'ID de l'utilisateur doit être un nombre positif.");
-                    valide = false;
-                }
-            } catch (NumberFormatException e) {
-                erreurUserIdLabel.setText("L'ID de l'utilisateur doit être un nombre valide.");
-                valide = false;
-            }
-        }
-
-        // Si la saisie est invalide, arrêter l'exécution
-        if (!valide) {
-            return;
-        }
-
-        // Créer un nouvel objet HistoriqueReclamation
-        HistoriqueReclamation historique = new HistoriqueReclamation(0, ticketId, message, dateAction, userId);
-
-        // Envoyer l'historique
-        try {
-            historiqueService.ajouter(historique);
-            afficherAlerte("Succès", "Historique ajouté avec succès !");
-            reinitialiserChamps();
-        } catch (Exception e) {
-            afficherAlerte("Erreur", "Une erreur s'est produite lors de l'ajout de l'historique : " + e.getMessage());
-        }
+        // Debug : afficher le nombre d'entrées chargées
+        System.out.println("Données chargées : " + observableList.size() + " entrées");
     }
 
-    private void reinitialiserChamps() {
-        // Réinitialiser les champs après l'envoi
-        ticketIdField.clear();
-        messageTextArea.clear();
-        dateActionField.clear();
-        userIdField.clear();
-    }
+    // Méthode pour gérer le clic sur le bouton "Rafraîchir"
+    @FXML
+    private void handleRefreshButton() {
+        System.out.println("Bouton Rafraîchir cliqué !"); // Debug : vérifier que la méthode est appelée
+        refreshTable(); // Recharger les données
+    }}
 
-    private void afficherAlerte(String titre, String message) {
-        // Afficher une boîte de dialogue d'alerte
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titre);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-}

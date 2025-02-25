@@ -5,32 +5,58 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.ModifierReclamationController">
+<AnchorPane prefHeight="450.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom, #FFDEE9, #B5FFFC);"
+            xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.esprit.tn.pidev.controllers.ModifierReclamationController">
+
     <children>
         <!-- Titre -->
-        <Label layoutX="200.0" layoutY="20.0" prefHeight="30.0" prefWidth="400.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Modifier la Réclamation" textAlignment="CENTER"/>
+        <Label layoutX="200.0" layoutY="20.0" prefHeight="30.0" prefWidth="400.0"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"
+               text="Modifier la Réclamation" textAlignment="CENTER" />
 
         <!-- ID Réclamation (Non modifiable) -->
-        <Label layoutX="30.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" text="ID Réclamation:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <TextField fx:id="idField" layoutX="170.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" editable="false" style="-fx-background-color: #E0E0E0; -fx-font-size: 14px;" />
+        <Label layoutX="30.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;" text="ID Réclamation:" />
+        <TextField fx:id="idField" editable="false" layoutX="170.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0"
+                   style="-fx-background-color: #E0E0E0; -fx-font-size: 14px;" />
 
         <!-- Catégorie -->
-        <Label layoutX="30.0" layoutY="110.0" prefHeight="30.0" prefWidth="100.0" text="Catégorie:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <ComboBox fx:id="categorieComboBox" layoutX="170.0" layoutY="110.0" prefHeight="30.0" prefWidth="300.0" style="-fx-font-size: 14px;" />
+        <Label layoutX="30.0" layoutY="110.0" prefHeight="30.0" prefWidth="100.0"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Catégorie:" />
+        <ComboBox fx:id="categorieComboBox" layoutX="170.0" layoutY="110.0" prefHeight="30.0" prefWidth="300.0"
+                  style="-fx-font-size: 14px;" />
 
         <!-- Description -->
-        <Label layoutX="30.0" layoutY="170.0" prefHeight="30.0" prefWidth="100.0" text="Description:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <TextArea fx:id="descriptionTextArea" layoutX="170.0" layoutY="170.0" prefHeight="120.0" prefWidth="300.0" promptText="Modifier la description" style="-fx-font-size: 14px; -fx-border-radius: 5px;" />
+        <Label layoutX="30.0" layoutY="170.0" prefHeight="30.0" prefWidth="100.0"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Description:" />
+        <TextArea fx:id="descriptionTextArea" layoutX="170.0" layoutY="170.0" prefHeight="120.0" prefWidth="300.0"
+                  promptText="Modifier la description" style="-fx-font-size: 14px; -fx-border-radius: 5px;" />
 
         <!-- Date de création (Non modifiable) -->
-        <Label layoutX="30.0" layoutY="310.0" prefHeight="30.0" prefWidth="120.0" text="Date de Création:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <TextField fx:id="dateCreationField" layoutX="170.0" layoutY="310.0" prefHeight="30.0" prefWidth="300.0" editable="false" style="-fx-background-color: #E0E0E0; -fx-font-size: 14px;" />
+        <Label layoutX="30.0" layoutY="310.0" prefHeight="30.0" prefWidth="120.0"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Date de Création:" />
+        <TextField fx:id="dateCreationField" editable="false" layoutX="170.0" layoutY="310.0" prefHeight="30.0" prefWidth="300.0"
+                   style="-fx-background-color: #E0E0E0; -fx-font-size: 14px;" />
 
         <!-- Boutons -->
-        <Button fx:id="enregistrerButton" layoutX="40.0" layoutY="370.0" text="Enregistrer" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;" />
-        <Button fx:id="annulerButton" layoutX="210.0" layoutY="370.0" text="Annuler" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;" />
+        <Button fx:id="enregistrerButton" layoutX="40.0" layoutY="370.0" prefHeight="40.0" prefWidth="150.0"
+                style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;"
+                text="Enregistrer" onAction="#handleEnregistrer" />
+        <Button fx:id="annulerButton" layoutX="210.0" layoutY="370.0" prefHeight="40.0" prefWidth="150.0"
+                style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;"
+                text="Annuler" onAction="#handleAnnuler" />
 
+        <!-- Image -->
+        <ImageView fx:id="backIcon" fitHeight="250.0" fitWidth="271.0" layoutX="515.0" layoutY="60.0">
+            <image>
+                <Image url="@image/image1.jpeg" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>
