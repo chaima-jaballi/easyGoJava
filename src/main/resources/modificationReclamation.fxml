@@ -31,6 +31,10 @@
         <Label layoutX="20.0" layoutY="354.0" prefHeight="30.0" prefWidth="120.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Date de Création:" textFill="#fffbfb" />
         <TextField fx:id="dateCreationField" editable="false" layoutX="170.0" layoutY="354.0" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #E0E0E0; -fx-font-size: 14px;" />
 
+        <!-- Statut (Non modifiable) -->
+        <Label layoutX="30.0" layoutY="320.0" prefHeight="30.0" prefWidth="100.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Statut:" textFill="#fffbfb" />
+        <Label fx:id="statutLabel" layoutX="170.0" layoutY="320.0" prefHeight="30.0" prefWidth="300.0" style="-fx-font-size: 14px; -fx-background-color: #E0E0E0; -fx-padding: 5px;" />
+
         <!-- Boutons -->
         <Button fx:id="enregistrerButton" layoutX="30.0" layoutY="437.0" onAction="#handleEnregistrer" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;" text="Enregistrer" />
         <Button fx:id="annulerButton" layoutX="225.0" layoutY="437.0" onAction="#handleAnnuler" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;" text="Annuler" />

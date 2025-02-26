@@ -22,8 +22,10 @@
         <Label layoutX="30.0" layoutY="80.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Catégorie:" />
         <ComboBox fx:id="categorieComboBox" layoutX="150.0" layoutY="80.0" prefHeight="40.0" prefWidth="300.0" promptText="Sélectionnez une catégorie" style="-fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;" />
 
-        <Label layoutX="30.0" layoutY="140.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Statut:" />
-        <ComboBox fx:id="statutComboBox" layoutX="150.0" layoutY="140.0" prefHeight="40.0" prefWidth="300.0" promptText="Sélectionnez un statut" style="-fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;" />
+        <!-- Supprimer ou commenter le label "Statut" si vous masquez le ComboBox -->
+        <!-- <Label layoutX="30.0" layoutY="140.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Statut:" /> -->
+        <!-- Masquer ou désactiver le statutComboBox -->
+        <ComboBox fx:id="statutComboBox" layoutX="150.0" layoutY="140.0" prefHeight="40.0" prefWidth="300.0" promptText="Sélectionnez un statut" style="-fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;" visible="false" />
 
         <Label layoutX="30.0" layoutY="200.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Description:" />
         <TextArea fx:id="descriptionTextArea" layoutX="150.0" layoutY="200.0" prefHeight="120.0" prefWidth="300.0" promptText="Décrivez votre réclamation ici" style="-fx-font-size: 16px; -fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;" />

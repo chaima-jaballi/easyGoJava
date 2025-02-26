@@ -6,8 +6,6 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
-import java.time.LocalDate;
-
 import com.esprit.tn.pidev.services.TicketReclamationService;
 
 public class ModifierReclamationController {
@@ -24,6 +22,8 @@ public class ModifierReclamationController {
     @FXML
     private TextField dateCreationField;
     @FXML
+    private Label statutLabel; // Champ pour afficher le statut (non modifiable)
+    @FXML
     private Button enregistrerButton;
     @FXML
     private Button annulerButton;
@@ -34,7 +34,8 @@ public class ModifierReclamationController {
 
     @FXML
     private void initialize() {
-        categorieComboBox.getItems().addAll("Technique", "Facturation", "Service Client", "Autre");
+        // Initialiser les catégories
+        categorieComboBox.getItems().addAll("disponibilité des trajets", "Techniques", "coût et financement", "communication");
         dateCreationField.setEditable(false);
     }
 
@@ -45,6 +46,7 @@ public class ModifierReclamationController {
             categorieComboBox.setValue(reclamation.getCategorie());
             descriptionTextArea.setText(reclamation.getDescription());
             dateCreationField.setText(reclamation.getDateCreation().toString());
+            statutLabel.setText(reclamation.getStatut()); // Afficher le statut
         }
     }
 
@@ -61,7 +63,7 @@ public class ModifierReclamationController {
             return;
         }
 
-        // Mettre à jour les valeurs de la réclamation
+        // Mettre à jour les valeurs de la réclamation (sauf le statut)
         reclamationActuelle.setCategorie(categorieComboBox.getValue());
         reclamationActuelle.setDescription(descriptionTextArea.getText());
 

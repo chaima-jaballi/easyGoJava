@@ -29,7 +29,7 @@ public class TicketReclamationController {
     @FXML
     public void initialize() {
         // Initialisation des catégories et statuts
-        categorieComboBox.getItems().addAll("Technique", "Facturation", "Service Client", "Autre");
+        categorieComboBox.getItems().addAll("disponibilité des trajets", "Techniques", "coût et financement", "communication");
         categorieComboBox.getSelectionModel().selectFirst();
 
         statutComboBox.getItems().addAll("En attente", "En cours", "Résolu");
@@ -46,35 +46,44 @@ public class TicketReclamationController {
 
     private void envoyerReclamation() {
         String categorie = categorieComboBox.getValue();
-        String statut = statutComboBox.getValue();
         String description = descriptionTextArea.getText().trim();
         LocalDate date = dateCreationField.getValue();
 
-        if (categorie == null || statut == null || description.isEmpty() || date == null) {
+        // Vérification des champs obligatoires
+        if (categorie == null || description.isEmpty() || date == null) {
             afficherAlerte("Erreur de saisie", "Tous les champs sont obligatoires.");
             return;
         }
 
+        // Vérification de la longueur de la description
         if (description.length() > 500) {
             afficherAlerte("Erreur de saisie", "La description ne doit pas dépasser 500 caractères.");
             return;
         }
 
+        // Convertir LocalDate en Timestamp
         Timestamp timestamp = Timestamp.valueOf(date.atStartOfDay());
 
+        // Définir le statut par défaut à "En attente"
+        String statut = "En attente";
+
+        // Créer l'objet TicketReclamation
         TicketReclamation ticketReclamation = new TicketReclamation(0, 1, categorie, statut, description, timestamp);
+
+        // Ajouter le ticket à la base de données
         ticketReclamationService.ajouter(ticketReclamation);
 
+        // Afficher une alerte de succès
         afficherAlerte("Succès", "Réclamation envoyée avec succès !");
+
+        // Ouvrir la fenêtre de confirmation
         ouvrirFenetreConfirmation();
 
         // Réinitialiser les champs
         categorieComboBox.getSelectionModel().selectFirst();
-        statutComboBox.getSelectionModel().selectFirst();
         descriptionTextArea.clear();
         dateCreationField.setValue(LocalDate.now());
     }
-
     private void supprimerReclamation() {
         descriptionTextArea.clear();
         categorieComboBox.getSelectionModel().selectFirst();
