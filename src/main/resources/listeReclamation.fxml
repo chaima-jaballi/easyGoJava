@@ -10,19 +10,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="618.0" prefWidth="656.0"
-            xmlns="http://javafx.com/javafx/20.0.2"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.esprit.tn.pidev.controllers.ListeReclamationsController">
+<AnchorPane prefHeight="618.0" prefWidth="656.0" style="-fx-background-color: linear-gradient(to bottom, #1E3C72, #2A5298);" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.ListeReclamationsController">
     <children>
-        <Label layoutX="232.0" layoutY="10.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Liste des Réclamations" />
+        <!-- Titre -->
+        <Label layoutX="208.0" layoutY="10.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2C3E50; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-border-radius: 10px; -fx-padding: 10px; -fx-alignment: center;" text="Liste des Réclamations" textAlignment="CENTER" />
 
-        <Button fx:id="btnRetour" layoutX="10.0" layoutY="10.0" onAction="#retourVersHistorique"
-                prefHeight="30.0" prefWidth="50.0"
-                style="-fx-background-color: transparent; -fx-font-size: 18px; -fx-text-fill: #2C3E50; -fx-border-color: transparent;"
-                text="←" />
+        <!-- Bouton Retour -->
+        <Button fx:id="btnRetour" layoutX="10.0" layoutY="10.0" onAction="#retourVersHistorique" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-font-size: 18px; -fx-text-fill: #2C3E50; -fx-border-color: transparent; -fx-border-radius: 5px;" text="←" />
 
-        <TableView fx:id="tableView" layoutY="40.0" prefHeight="400" prefWidth="656.0" style="-fx-background-color: #f4f4f4;">
+        <!-- TableView -->
+        <TableView fx:id="tableView" layoutY="70.0" prefHeight="420.0" prefWidth="656.0" style="-fx-background-color: #f4f4f4; -fx-border-radius: 10px;">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="50" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="ID" visible="false" />
                 <TableColumn fx:id="colUserId" prefWidth="80" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="User ID" />
@@ -33,14 +30,16 @@
             </columns>
         </TableView>
 
-        <TextField fx:id="searchField" layoutX="90.0" layoutY="506.0" promptText="Rechercher..." />
-        <Button fx:id="btnRechercher" layoutX="309.0" layoutY="506.0" onAction="#rechercherReclamation" text="Rechercher" />
+        <!-- Barre de recherche -->
+        <TextField fx:id="searchField" layoutX="90.0" layoutY="506.0" promptText="Rechercher..." style="-fx-background-color: #ECEFF1; -fx-border-radius: 5px; -fx-font-size: 14px;" />
+        <Button fx:id="btnRechercher" layoutX="309.0" layoutY="506.0" onAction="#rechercherReclamation" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Rechercher" />
 
-        <ComboBox fx:id="triComboBox" layoutX="463.0" layoutY="506.0" promptText="Trier par" />
-        <Button fx:id="btnTrier" layoutX="593.0" layoutY="506.0" onAction="#trierReclamations" text="Trier" />
+        <!-- ComboBox pour le tri -->
+        <ComboBox fx:id="triComboBox" layoutX="463.0" layoutY="506.0" promptText="Trier par" style="-fx-background-color: #ECEFF1; -fx-border-radius: 5px; -fx-font-size: 14px;" />
+        <Button fx:id="btnTrier" layoutX="593.0" layoutY="506.0" onAction="#trierReclamations" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Trier" />
 
-        <Button fx:id="btnSupprimer" layoutX="71.0" layoutY="557.0" onAction="#supprimerReclamation"
-                style="-fx-background-color: #FF3B30; -fx-text-fill: white; -fx-font-size: 16px;" text="Supprimer">
+        <!-- Boutons -->
+        <Button fx:id="btnSupprimer" layoutX="43.0" layoutY="557.0" onAction="#supprimerReclamation" style="-fx-background-color: #FF3B30; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Supprimer">
             <graphic>
                 <ImageView fitHeight="20" fitWidth="20">
                     <Image fx:id="suppIcon" url="@image/suppIcon.png" />
@@ -48,8 +47,7 @@
             </graphic>
         </Button>
 
-        <Button fx:id="btnAjouter" layoutX="507.0" layoutY="557.0" onAction="#ajouterReclamation"
-                prefHeight="37.0" prefWidth="105.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Ajouter">
+        <Button fx:id="btnAjouter" layoutX="507.0" layoutY="557.0" onAction="#ajouterReclamation" prefHeight="37.0" prefWidth="105.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Ajouter">
             <graphic>
                 <ImageView fitHeight="20" fitWidth="20">
                     <Image fx:id="ajoutIcon" url="@image/ajoutIcon.png" />
@@ -57,8 +55,7 @@
             </graphic>
         </Button>
 
-        <Button fx:id="btnModifier" layoutX="295.0" layoutY="557.0" onAction="#modifierReclamation"
-                style="-fx-background-color: #FFA500; -fx-text-fill: white; -fx-font-size: 16px;" text="Modifier">
+        <Button fx:id="btnModifier" layoutX="328.0" layoutY="557.0" onAction="#modifierReclamation" style="-fx-background-color: #FFA500; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Modifier">
             <graphic>
                 <ImageView fitHeight="20" fitWidth="20">
                     <Image fx:id="editIcon" url="@image/editIcon.png" />
@@ -66,8 +63,7 @@
             </graphic>
         </Button>
 
-        <Button fx:id="btnEvaluer" layoutX="183.0" layoutY="557.0" onAction="#evaluerReclamation"
-                style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 16px;" text="Évaluer">
+        <Button fx:id="btnEvaluer" layoutX="189.0" layoutY="557.0" onAction="#evaluerReclamation" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Évaluer">
             <graphic>
                 <ImageView fitHeight="20" fitWidth="20">
                     <Image fx:id="evalIcon" url="@image/evaluer.png" />
