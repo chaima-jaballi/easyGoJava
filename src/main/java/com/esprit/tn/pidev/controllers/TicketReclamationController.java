@@ -93,6 +93,7 @@ public class TicketReclamationController {
         afficherAlerte("Succès", "Réclamation supprimée !");
     }
 
+
     // Chargement de la fenêtre de confirmation après l'alerte
     private void ouvrirFenetreConfirmation() {
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
