@@ -11,16 +11,16 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, #1E3C72, #2A5298);" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.TicketReclamationController">
     <children>
-        <ImageView fitHeight="200.0" fitWidth="180.0" layoutX="550.0" layoutY="80.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="137.0" fitWidth="144.0" layoutX="543.0" layoutY="105.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@image/a.jpg" />
             </image>
         </ImageView>
 
-        <Label layoutX="200.0" layoutY="20.0" prefHeight="50.0" prefWidth="400.0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: rgba(255, 255, 255, 0.2); -fx-padding: 10px; -fx-border-radius: 15px; -fx-background-radius: 15px; -fx-alignment: center;" text="Formulaire de Réclamation" />
+        <Label layoutX="200.0" layoutY="20.0" prefHeight="66.0" prefWidth="419.0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: rgba(255, 255, 255, 0.2); -fx-padding: 10px; -fx-border-radius: 15px; -fx-background-radius: 15px; -fx-alignment: center;" text="Formulaire de Réclamation" />
 
-        <Label layoutX="30.0" layoutY="80.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Catégorie:" />
-        <ComboBox fx:id="categorieComboBox" layoutX="150.0" layoutY="80.0" prefHeight="40.0" prefWidth="300.0" promptText="Sélectionnez une catégorie" style="-fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;" />
+        <Label layoutX="30.0" layoutY="107.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Catégorie:" />
+        <ComboBox fx:id="categorieComboBox" layoutX="150.0" layoutY="107.0" prefHeight="40.0" prefWidth="300.0" promptText="Sélectionnez une catégorie" style="-fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;" />
 
         <!-- Supprimer ou commenter le label "Statut" si vous masquez le ComboBox -->
         <!-- <Label layoutX="30.0" layoutY="140.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Statut:" /> -->
@@ -30,8 +30,8 @@
         <Label layoutX="30.0" layoutY="200.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Description:" />
         <TextArea fx:id="descriptionTextArea" layoutX="150.0" layoutY="200.0" prefHeight="120.0" prefWidth="300.0" promptText="Décrivez votre réclamation ici" style="-fx-font-size: 16px; -fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 5px;" />
 
-        <Label layoutX="10.0" layoutY="340.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Date de Création:" />
-        <DatePicker fx:id="dateCreationField" layoutX="150.0" layoutY="340.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px;" />
+        <Label layoutX="10.0" layoutY="340.0" prefHeight="27.0" prefWidth="150.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Date de Création:" />
+        <DatePicker fx:id="dateCreationField" layoutX="172.0" layoutY="340.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px;" />
 
         <Button fx:id="retourButton" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-font-size: 22px; -fx-text-fill: white; -fx-border-color: transparent; -fx-font-weight: bold;" text="←" />
 

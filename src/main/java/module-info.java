@@ -13,6 +13,7 @@ module com.esprit.tn.pidev {
     requires jdk.jfr;
     requires com.fasterxml.jackson.annotation;
     requires java.desktop;
+    requires twilio;
 
     opens com.esprit.tn.pidev to javafx.fxml;
     exports com.esprit.tn.pidev;

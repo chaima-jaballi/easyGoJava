@@ -4,45 +4,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="474.0" prefWidth="689.0"
-            xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/20.0.2"
-            fx:controller="com.esprit.tn.pidev.controllers.HistoriqueReclamationController"
-            style="-fx-background-color: linear-gradient(to bottom, #D5E8D4, #EAF2F8);">
+<AnchorPane prefHeight="474.0" prefWidth="689.0" style="-fx-background-color: linear-gradient(to bottom, #D5E8D4, #EAF2F8);" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.HistoriqueReclamationController">
 
     <children>
         <VBox alignment="CENTER" prefHeight="474.0" prefWidth="661.0" spacing="20">
 
             <!-- En-tête avec boutons Back et Ajouter -->
             <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 15;">
-                <Button fx:id="btnBack" text="←" prefWidth="50.0"
-                        style="-fx-background-color: transparent;
-                               -fx-font-size: 22px;
-                               -fx-text-fill: #2C3E50;
-                               -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);" />
-                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;
-                             -fx-text-fill: #2C3E50; -fx-font-family: 'Segoe UI';"
-                       text="Historique des Réclamations" />
+                <Button fx:id="btnBack" prefWidth="50.0" style="-fx-background-color: transparent;                                -fx-font-size: 22px;                                -fx-text-fill: #2C3E50;                                -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);" text="←" />
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;                              -fx-text-fill: #2C3E50; -fx-font-family: 'Segoe UI';" text="Historique des Réclamations" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="btnAjouter" text="+" prefWidth="50.0"
-                        style="-fx-background-color: transparent;
-                               -fx-font-size: 22px;
-                               -fx-text-fill: #27AE60;
-                               -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);" />
             </HBox>
 
             <!-- Tableau des réclamations -->
-            <TableView fx:id="tableHistorique" prefHeight="350.0" prefWidth="640.0"
-                       style="-fx-border-color: #ccc; -fx-border-width: 1px;
-                              -fx-background-color: #FBFCFC; -fx-alternate-row-fill-visible: true;
-                              -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0, 2, 2);
-                              -fx-background-radius: 8px;">
+            <TableView fx:id="tableHistorique" prefHeight="350.0" prefWidth="640.0" style="-fx-border-color: #ccc; -fx-border-width: 1px;                               -fx-background-color: #FBFCFC; -fx-alternate-row-fill-visible: true;                               -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0, 2, 2);                               -fx-background-radius: 8px;">
                 <columns>
                     <TableColumn fx:id="colId" text="ID" />
                     <TableColumn fx:id="colTicketId" text="ID Réclamation" />
@@ -54,20 +34,11 @@
 
             <!-- Boutons Rafraîchir, Évaluer et Retour -->
             <HBox alignment="CENTER" spacing="20" style="-fx-background-color: #f5f5f5; -fx-padding: 10;">
-                <Button fx:id="btnRefresh" text="Rafraîchir" prefWidth="120.0"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;
-                               -fx-font-size: 14px; -fx-border-radius: 5px;
-                               -fx-cursor: hand;
-                               -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);"
-                        onAction="#handleRefreshButton"/>
+                <Button fx:id="btnRefresh" onAction="#handleRefreshButton" prefWidth="120.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;                                -fx-font-size: 14px; -fx-border-radius: 5px;                                -fx-cursor: hand;                                -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);" text="Rafraîchir" />
 
 
 
-                <Button fx:id="btnRetour" text="Retour" prefWidth="120.0"
-                        style="-fx-background-color: #2196F3; -fx-text-fill: white;
-                               -fx-font-size: 14px; -fx-border-radius: 5px;
-                               -fx-cursor: hand;
-                               -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);"/>
+                <Button fx:id="btnRetour" prefWidth="120.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;                                -fx-font-size: 14px; -fx-border-radius: 5px;                                -fx-cursor: hand;                                -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);" text="Retour" />
             </HBox>
         </VBox>
     </children>

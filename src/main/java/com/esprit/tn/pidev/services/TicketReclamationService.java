@@ -83,14 +83,23 @@ public class TicketReclamationService implements Iservice<TicketReclamation> {
 
 
     @Override
-    public void supprimer(TicketReclamation tr) {
-        String req = "DELETE FROM ticketreclamation WHERE id = ?";
+    public void supprimer(TicketReclamation ticket) {
         try {
-            PreparedStatement stm = cnx.prepareStatement(req);
-            stm.setInt(1, tr.getId());
-            stm.executeUpdate();
+            // Supprimer d'abord les feedbacks associés
+            String deleteFeedbackQuery = "DELETE FROM feedback WHERE ticketId = ?";
+            PreparedStatement psFeedback = cnx.prepareStatement(deleteFeedbackQuery);
+            psFeedback.setInt(1, ticket.getId());
+            psFeedback.executeUpdate();
+
+            // Supprimer ensuite le ticket
+            String deleteTicketQuery = "DELETE FROM ticketreclamation WHERE id = ?";
+            PreparedStatement psTicket = cnx.prepareStatement(deleteTicketQuery);
+            psTicket.setInt(1, ticket.getId());
+            psTicket.executeUpdate();
+
+            System.out.println("Ticket supprimé avec succès !");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -118,7 +127,31 @@ public class TicketReclamationService implements Iservice<TicketReclamation> {
         }
         return trs;
     }
+    @Override
+    public String getUserPhoneNumberById(int userId) {
+        String phoneNumber = null;
+        String query = "SELECT phoneNumber FROM users WHERE id = ?"; // Adjust table/column names as needed
+        try (PreparedStatement stmt = cnx.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                phoneNumber = rs.getString("phoneNumber");
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur SQL lors de la récupération du numéro : " + e.getMessage());
+        }
 
+        // Normalize and validate
+        if (phoneNumber != null && !phoneNumber.trim().isEmpty()) {
+            if (!phoneNumber.startsWith("+")) {
+                phoneNumber = "+216" + phoneNumber.trim(); // Assuming Tunisian numbers, adjust country code
+            }
+            if (phoneNumber.matches("^\\+[1-9]\\d{1,14}$")) {
+                return phoneNumber;
+            }
+        }
+        return null; // Return null if invalid or not found (not "")
+    }
     @Override
     public TicketReclamation getOneById(Integer id) {
         TicketReclamation tr = new TicketReclamation();

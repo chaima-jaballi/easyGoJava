@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.image.ImageView?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.FeedbackController">
+<AnchorPane prefHeight="500.0" prefWidth="450.0" style="-fx-background-color: linear-gradient(to bottom, #1E3C72, #2A5298);" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.FeedbackController">
+
     <children>
         <!-- Titre -->
-        <Label layoutX="20.0" layoutY="20.0" text="Donnez votre feedback :" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <Label layoutX="50.0" layoutY="20.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" text="Donnez votre feedback" />
 
-        <!-- Champ pour la note -->
-        <Label layoutX="20.0" layoutY="60.0" text="Note (1-5) :" />
-        <TextField fx:id="ratingField" layoutX="120.0" layoutY="60.0" promptText="Entrez une note entre 1 et 5" />
+        <!-- Notation avec étoiles -->
+        <Label layoutX="50.0" layoutY="80.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Note :" />
 
-        <!-- Conteneur pour afficher les étoiles -->
-        <HBox fx:id="ratingStarsHBox" layoutX="120.0" layoutY="90.0" spacing="5" alignment="CENTER"/>
+        <HBox fx:id="ratingStarsHBox" layoutX="150.0" layoutY="75.0" spacing="15">
+            <Label fx:id="star1" onMouseClicked="#handleStarClick1" style="-fx-font-size: 36px; -fx-text-fill: #ccc; -fx-cursor: hand;" text="★" />
+            <Label fx:id="star2" onMouseClicked="#handleStarClick2" style="-fx-font-size: 36px; -fx-text-fill: #ccc; -fx-cursor: hand;" text="★" />
+            <Label fx:id="star3" onMouseClicked="#handleStarClick3" style="-fx-font-size: 36px; -fx-text-fill: #ccc; -fx-cursor: hand;" text="★" />
+            <Label fx:id="star4" onMouseClicked="#handleStarClick4" style="-fx-font-size: 36px; -fx-text-fill: #ccc; -fx-cursor: hand;" text="★" />
+            <Label fx:id="star5" onMouseClicked="#handleStarClick5" style="-fx-font-size: 36px; -fx-text-fill: #ccc; -fx-cursor: hand;" text="★" />
+        </HBox>
 
-        <!-- Champ pour la catégorie -->
-        <Label layoutX="20.0" layoutY="130.0" text="Catégorie :" />
-        <ComboBox fx:id="categoryComboBox" layoutX="120.0" layoutY="130.0" promptText="Sélectionnez une catégorie" />
+        <!-- Catégorie -->
+        <Label layoutX="50.0" layoutY="140.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Catégorie :" />
 
-        <!-- Champ pour le commentaire -->
-        <Label layoutX="20.0" layoutY="170.0" text="Commentaire :" />
-        <TextArea fx:id="commentField" layoutX="120.0" layoutY="170.0" prefHeight="100.0" prefWidth="250.0" promptText="Entrez votre commentaire" />
+        <ComboBox fx:id="categoryComboBox" layoutX="170.0" layoutY="135.0" prefHeight="40.0" prefWidth="230.0" promptText="Sélectionnez une catégorie" style="-fx-font-size: 16px; -fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px;" />
 
-        <!-- Champ pour les suggestions d'amélioration -->
-        <Label layoutX="20.0" layoutY="280.0" text="Suggestions d'amélioration :" />
-        <TextArea fx:id="suggestionField" layoutX="120.0" layoutY="280.0" prefHeight="60.0" prefWidth="250.0" promptText="Entrez vos suggestions" />
+        <!-- Commentaire -->
+        <Label layoutX="34.0" layoutY="200.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Commentaire :" />
 
-        <!-- Bouton de soumission -->
-        <Button fx:id="submitButton" layoutX="150.0" layoutY="350.0" text="Soumettre" onAction="#handleSubmitFeedback" />
+        <TextArea fx:id="commentField" layoutX="170.0" layoutY="200.0" prefHeight="80.0" prefWidth="230.0" promptText="Entrez votre commentaire" style="-fx-font-size: 16px; -fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 10px;" />
+
+        <!-- Suggestions d'amélioration -->
+        <Label layoutX="50.0" layoutY="300.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Suggestions :" />
+
+        <TextArea fx:id="suggestionField" layoutX="170.0" layoutY="300.0" prefHeight="70.0" prefWidth="230.0" promptText="Entrez vos suggestions" style="-fx-font-size: 16px; -fx-background-color: #ECEFF1; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 10px;" />
+
+        <!-- Bouton Soumettre -->
+        <Button fx:id="submitButton" layoutX="170.0" layoutY="400.0" onAction="#handleSubmitFeedback" prefHeight="50.0" prefWidth="230.0" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-background-radius: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);" text="Soumettre" />
     </children>
 </AnchorPane>

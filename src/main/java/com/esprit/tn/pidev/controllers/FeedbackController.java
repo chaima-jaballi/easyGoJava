@@ -3,49 +3,77 @@ package com.esprit.tn.pidev.controllers;
 import com.esprit.tn.pidev.entities.Feedback;
 import com.esprit.tn.pidev.services.FeedbackService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 
 public class FeedbackController {
-    @FXML private TextField ratingField;
-    @FXML private TextArea commentField;
-    @FXML private Label messageLabel;
+    @FXML private Label star1, star2, star3, star4, star5;
+    @FXML private ComboBox<String> categoryComboBox;
+    @FXML private TextArea commentField, suggestionField;
+    @FXML private Button submitButton;
 
-    private int ticketId;
+    private int rating = 0;
     private final FeedbackService feedbackService = new FeedbackService();
+    private int ticketId;
 
-    // Setter pour définir l'ID du ticket
     public void setTicketId(int ticketId) {
         this.ticketId = ticketId;
     }
 
     @FXML
-    private void handleSubmitFeedback() {
-        try {
-            if (ratingField.getText().isEmpty() || commentField.getText().isEmpty()) {
-                afficherAlerte("Erreur", "Tous les champs doivent être remplis.");
-                return;
+    public void initialize() {
+        // Ajouter des catégories avec émotions
+        categoryComboBox.getItems().addAll(
+                "😀 Heureux",
+                "😢 Triste",
+                "😡 En colère",
+                "😐 Neutre"
+        );
+    }
+
+
+    // Gestion des étoiles
+    @FXML private void handleStarClick1() { setRating(1); }
+    @FXML private void handleStarClick2() { setRating(2); }
+    @FXML private void handleStarClick3() { setRating(3); }
+    @FXML private void handleStarClick4() { setRating(4); }
+    @FXML private void handleStarClick5() { setRating(5); }
+
+    private void setRating(int ratingValue) {
+        rating = ratingValue;
+        Label[] stars = {star1, star2, star3, star4, star5};
+        for (int i = 0; i < 5; i++) {
+            if (i < ratingValue) {
+                stars[i].setTextFill(Color.GOLD);
+            } else {
+                stars[i].setTextFill(Color.LIGHTGRAY);
             }
-
-            int rating = Integer.parseInt(ratingField.getText());
-            if (rating < 1 || rating > 5) {
-                afficherAlerte("Erreur", "La note doit être entre 1 et 5.");
-                return;
-            }
-
-            String comment = commentField.getText();
-            Feedback feedback = new Feedback(0, ticketId, rating, comment, null);
-            feedbackService.ajouterFeedback(feedback);
-
-            afficherAlerte("Succès", "Feedback soumis avec succès !");
-            ratingField.clear();
-            commentField.clear();
-
-        } catch (NumberFormatException e) {
-            afficherAlerte("Erreur", "Veuillez entrer une note valide.");
         }
+    }
+
+    @FXML
+    private void handleSubmitFeedback() {
+        if (rating == 0 || commentField.getText().isEmpty() || categoryComboBox.getValue() == null) {
+            afficherAlerte("Erreur", "Veuillez sélectionner une note, une catégorie et ajouter un commentaire.");
+            return;
+        }
+
+        String comment = commentField.getText();
+        String suggestion = suggestionField.getText();
+        String category = categoryComboBox.getValue();
+
+        Feedback feedback = new Feedback(0, ticketId, rating, comment, null);
+        feedbackService.ajouterFeedback(feedback);
+
+        afficherAlerte("Succès", "Feedback soumis avec succès !");
+        resetForm();
+    }
+
+    private void resetForm() {
+        setRating(0);
+        commentField.clear();
+        suggestionField.clear();
+        categoryComboBox.getSelectionModel().clearSelection();
     }
 
     private void afficherAlerte(String titre, String message) {

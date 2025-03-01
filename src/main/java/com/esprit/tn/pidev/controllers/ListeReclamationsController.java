@@ -148,7 +148,7 @@ public class ListeReclamationsController {
         TicketReclamation selected = tableView.getSelectionModel().getSelectedItem();
         if (selected != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/feedback.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/feedbackReclamation.fxml"));
                 Parent root = loader.load();
 
                 // Utilisation de setTicketId au lieu de initData
@@ -167,6 +167,7 @@ public class ListeReclamationsController {
             showAlert("Erreur", "Veuillez sélectionner une réclamation à évaluer.", Alert.AlertType.WARNING);
         }
     }
+
 
 
     @FXML

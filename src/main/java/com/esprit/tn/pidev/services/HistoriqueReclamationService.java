@@ -113,7 +113,23 @@ public class HistoriqueReclamationService implements Iservice<HistoriqueReclamat
         }
         return hrs;
     }
+    @Override
+    public String getUserPhoneNumberById(int userId) {
+        String phoneNumber = null;
+        String query = "SELECT phone_number FROM users WHERE id = ?"; // Adjust table/column names as per your DB schema
 
+        try (PreparedStatement stmt = cnx.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                phoneNumber = rs.getString("phone_number");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Consider proper logging in production
+        }
+
+        return phoneNumber != null ? phoneNumber : ""; // Return empty string if not found
+    }
     @Override
     public HistoriqueReclamation getOneById(Integer id) {
         HistoriqueReclamation hr = new HistoriqueReclamation();
