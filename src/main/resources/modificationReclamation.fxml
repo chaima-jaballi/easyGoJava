@@ -8,36 +8,40 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, #1E3C72, #2A5298);" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.ModifierReclamationController">
-
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.ModifierReclamationController">
     <children>
         <!-- Titre -->
-        <Label layoutX="153.0" layoutY="14.0" prefHeight="30.0" prefWidth="400.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2C3E50; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-border-radius: 10px; -fx-padding: 10px; -fx-alignment: center;" text="Modifier la Réclamation" textAlignment="CENTER" />
+        <Label layoutX="153.0" layoutY="14.0" prefHeight="30.0" prefWidth="400.0" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: #3b82f6; -fx-padding: 10px; -fx-border-radius: 15px; -fx-background-radius: 15px; -fx-alignment: center;" text="Modifier la Réclamation" textAlignment="CENTER">
+            <font>
+                <Font name="Cambria Bold" size="26.0" />
+            </font>
+        </Label>
 
         <!-- ID Réclamation (Non modifiable) -->
-        <Label layoutX="30.0" layoutY="80.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="ID Réclamation:" textFill="WHITE" />
+        <Label layoutX="30.0" layoutY="80.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="ID Réclamation:" textFill="#3b82f6" />
         <TextField fx:id="idField" editable="false" layoutX="170.0" layoutY="90.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: #E0E0E0; -fx-font-size: 14px;" />
 
         <!-- Catégorie -->
-        <Label layoutX="30.0" layoutY="140.0" prefHeight="30.0" prefWidth="100.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Catégorie:" textFill="#f7f2f2" />
-        <ComboBox fx:id="categorieComboBox" layoutX="170.0" layoutY="140.0" prefHeight="30.0" prefWidth="300.0" style="-fx-font-size: 14px; -fx-background-color: #ECEFF1; -fx-border-radius: 10px;" />
+        <Label layoutX="30.0" layoutY="140.0" prefHeight="30.0" prefWidth="100.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #3b82f6;" text="Catégorie:" />
+        <ComboBox fx:id="categorieComboBox" layoutX="170.0" layoutY="140.0" prefHeight="35.0" prefWidth="300.0" style="-fx-font-size: 14px; -fx-background-color: #ECEFF1; -fx-border-radius: 10px;" />
 
         <!-- Description -->
-        <Label layoutX="30.0" layoutY="200.0" prefHeight="30.0" prefWidth="100.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Description:" textFill="#fffefe" />
+        <Label layoutX="30.0" layoutY="200.0" prefHeight="30.0" prefWidth="100.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #3b82f6;" text="Description:" />
         <TextArea fx:id="descriptionTextArea" layoutX="170.0" layoutY="200.0" prefHeight="120.0" prefWidth="300.0" promptText="Modifier la description" style="-fx-font-size: 14px; -fx-border-radius: 5px;" />
 
         <!-- Date de création (Non modifiable) -->
-        <Label layoutX="20.0" layoutY="354.0" prefHeight="30.0" prefWidth="120.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Date de Création:" textFill="#fffbfb" />
+        <Label layoutX="20.0" layoutY="354.0" prefHeight="30.0" prefWidth="120.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Date de Création:" textFill="#3b82f6" />
         <TextField fx:id="dateCreationField" editable="false" layoutX="170.0" layoutY="354.0" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #E0E0E0; -fx-font-size: 14px;" />
 
         <!-- Statut (Non modifiable) -->
-        <Label layoutX="30.0" layoutY="320.0" prefHeight="30.0" prefWidth="100.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Statut:" textFill="#fffbfb" />
+        <Label layoutX="30.0" layoutY="320.0" prefHeight="30.0" prefWidth="100.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Statut:" textFill="#3b82f6" />
         <Label fx:id="statutLabel" layoutX="170.0" layoutY="320.0" prefHeight="30.0" prefWidth="300.0" style="-fx-font-size: 14px; -fx-background-color: #E0E0E0; -fx-padding: 5px;" />
 
         <!-- Boutons -->
-        <Button fx:id="enregistrerButton" layoutX="30.0" layoutY="437.0" onAction="#handleEnregistrer" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;" text="Enregistrer" />
-        <Button fx:id="annulerButton" layoutX="225.0" layoutY="437.0" onAction="#handleAnnuler" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px;" text="Annuler" />
+        <Button fx:id="enregistrerButton" layoutX="30.0" layoutY="437.0" onAction="#handleEnregistrer" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-border-radius: 5px;" text="Enregistrer" />
+        <Button fx:id="annulerButton" layoutX="225.0" layoutY="437.0" onAction="#handleAnnuler" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #3b82f6; -fx-border-radius: 5px; -fx-font-size: 16px; -fx-text-fill: #3b82f6; -fx-font-weight: bold;" text="Annuler" />
 
         <!-- Image -->
         <ImageView fx:id="backIcon" fitHeight="250.0" fitWidth="271.0" layoutX="515.0" layoutY="90.0">

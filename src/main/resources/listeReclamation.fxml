@@ -10,13 +10,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="618.0" prefWidth="656.0" style="-fx-background-color: linear-gradient(to bottom, #1E3C72, #2A5298);" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.ListeReclamationsController">
+<AnchorPane prefHeight="618.0" prefWidth="656.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.ListeReclamationsController">
     <children>
         <!-- Titre -->
-        <Label layoutX="208.0" layoutY="10.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2C3E50; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-border-radius: 10px; -fx-padding: 10px; -fx-alignment: center;" text="Liste des Réclamations" textAlignment="CENTER" />
+        <Label layoutX="208.0" layoutY="4.0" prefHeight="37.0" prefWidth="254.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: #3b82f6; -fx-border-radius: 10px; -fx-padding: 10px; -fx-alignment: center;" text="Liste des Réclamations" textAlignment="CENTER" />
 
         <!-- Bouton Retour -->
-        <Button fx:id="btnRetour" layoutX="10.0" layoutY="10.0" onAction="#retourVersHistorique" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-font-size: 18px; -fx-text-fill: #2C3E50; -fx-border-color: transparent; -fx-border-radius: 5px;" text="←" />
+        <Button fx:id="btnRetour" layoutX="10.0" layoutY="10.0" onAction="#retourVersHistorique" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-font-size: 18px; -fx-text-fill: #3b82f6; -fx-border-color: transparent; -fx-border-radius: 5px;" text="←" />
 
         <!-- TableView -->
         <TableView fx:id="tableView" layoutY="70.0" prefHeight="420.0" prefWidth="656.0" style="-fx-background-color: #f4f4f4; -fx-border-radius: 10px;">
@@ -32,11 +32,11 @@
 
         <!-- Barre de recherche -->
         <TextField fx:id="searchField" layoutX="90.0" layoutY="506.0" promptText="Rechercher..." style="-fx-background-color: #ECEFF1; -fx-border-radius: 5px; -fx-font-size: 14px;" />
-        <Button fx:id="btnRechercher" layoutX="309.0" layoutY="506.0" onAction="#rechercherReclamation" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Rechercher" />
+        <Button fx:id="btnRechercher" layoutX="309.0" layoutY="506.0" onAction="#rechercherReclamation" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Rechercher" />
 
         <!-- ComboBox pour le tri -->
         <ComboBox fx:id="triComboBox" layoutX="463.0" layoutY="506.0" promptText="Trier par" style="-fx-background-color: #ECEFF1; -fx-border-radius: 5px; -fx-font-size: 14px;" />
-        <Button fx:id="btnTrier" layoutX="593.0" layoutY="506.0" onAction="#trierReclamations" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Trier" />
+        <Button fx:id="btnTrier" layoutX="593.0" layoutY="506.0" onAction="#trierReclamations" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Trier" />
 
         <!-- Boutons -->
         <Button fx:id="btnSupprimer" layoutX="43.0" layoutY="557.0" onAction="#supprimerReclamation" style="-fx-background-color: #FF3B30; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 5px;" text="Supprimer">
@@ -70,6 +70,5 @@
                 </ImageView>
             </graphic>
         </Button>
-
     </children>
 </AnchorPane>

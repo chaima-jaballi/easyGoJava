@@ -90,7 +90,7 @@ public class TicketReclamationController {
         statutComboBox.getSelectionModel().selectFirst();
         dateCreationField.setValue(LocalDate.now());
 
-        afficherAlerte("Succès", "Réclamation supprimée !");
+        afficherAlerte("Succès", "Réclamation annulée !");
     }
 
 

@@ -2,6 +2,7 @@ package com.esprit.tn.pidev.controllers;
 
 import com.esprit.tn.pidev.entities.Feedback;
 import com.esprit.tn.pidev.services.FeedbackService;
+import com.esprit.tn.pidev.services.AutoResponseService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
@@ -14,6 +15,7 @@ public class FeedbackController {
 
     private int rating = 0;
     private final FeedbackService feedbackService = new FeedbackService();
+    private final AutoResponseService autoResponseService = new AutoResponseService();
     private int ticketId;
 
     public void setTicketId(int ticketId) {
@@ -30,7 +32,6 @@ public class FeedbackController {
                 "😐 Neutre"
         );
     }
-
 
     // Gestion des étoiles
     @FXML private void handleStarClick1() { setRating(1); }
@@ -62,10 +63,14 @@ public class FeedbackController {
         String suggestion = suggestionField.getText();
         String category = categoryComboBox.getValue();
 
+        // Créer un objet Feedback sans ajout d'attributs supplémentaires
         Feedback feedback = new Feedback(0, ticketId, rating, comment, null);
         feedbackService.ajouterFeedback(feedback);
 
-        afficherAlerte("Succès", "Feedback soumis avec succès !");
+        // Générer une réponse automatique basée sur la catégorie
+        String response = autoResponseService.generateAutoResponse(category);
+
+        afficherAlerte("Succès", "Feedback soumis avec succès ! \nRéponse automatique : " + response);
         resetForm();
     }
 

@@ -6,12 +6,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="618.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.AdminReclamationController">
+<AnchorPane prefHeight="618.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.AdminReclamationController">
     <children>
         <!-- Titre de la page -->
-        <Label layoutX="232.0" layoutY="10.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Gestion des Réclamations (Admin)" />
+        <Label layoutX="188.0" layoutY="14.0" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: #3b82f6; -fx-padding: 10px; -fx-border-radius: 15px; -fx-background-radius: 15px; -fx-alignment: center;" text="Gestion des Réclamations (Admin)" />
+
         <!-- TableView -->
-        <TableView fx:id="tableView" layoutY="40.0" prefHeight="324.0" prefWidth="806.0" style="-fx-background-color: #f4f4f4;">
+        <TableView fx:id="tableView" layoutY="92.0" prefHeight="324.0" prefWidth="806.0" style="-fx-background-color: #f4f4f4;">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="41.60000687837601" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="ID" />
                 <TableColumn fx:id="colUserId" prefWidth="91.19997787475586" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="User ID" />
@@ -22,7 +23,8 @@
                 <TableColumn fx:id="colActions" minWidth="0.0" prefWidth="253.59991455078125" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Actions" />
             </columns>
         </TableView>
+
         <!-- Bouton Statistiques -->
-        <Button fx:id="btnStats" layoutX="280.0" layoutY="380.0" text="Statistiques" onAction="#showStats" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-size: 14px;" />
+        <Button fx:id="btnStats" layoutX="355.0" layoutY="469.0" onAction="#showStats" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-border-radius: 22px; -fx-cursor: hand;" text="Statistiques" />
     </children>
 </AnchorPane>

@@ -9,15 +9,15 @@
 
 <AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.confirmationController">
     <children>
-        <VBox alignment="CENTER" prefHeight="368.0" prefWidth="502.0" spacing="20" style="-fx-background-color: linear-gradient(to bottom, #1E3C72, #2A5298); -fx-padding: 30px;">
+        <VBox alignment="CENTER" prefHeight="368.0" prefWidth="502.0" spacing="20" style="-fx-background-color: #f8f9fa; -fx-padding: 30px;">
             <ImageView fx:id="imageView" accessibleText="Icône de confirmation réussie" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@image/checkmark.png" />
                 </image>
             </ImageView>
-            <Label fx:id="confirmationMessage" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;" text="Réclamation envoyée avec succès !" wrapText="true" />
+            <Label fx:id="confirmationMessage" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #3b82f6;" text="Réclamation envoyée avec succès !" wrapText="true" />
 
-            <Button fx:id="btnRetour" prefWidth="140.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 8px; -fx-padding: 10px; -fx-min-height: 50px;" text="Retour" />
+            <Button fx:id="btnRetour" prefWidth="140.0" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 22px; -fx-padding: 10px; -fx-min-height: 50px;" text="Retour" />
         </VBox>
     </children>
 </AnchorPane>
