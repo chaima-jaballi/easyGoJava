@@ -10,19 +10,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DriverDashboardController {
 
     @FXML private TableView<Reservation> reservationsTable;
-    @FXML private TableColumn<Reservation, Integer> idColumn;
     @FXML private TableColumn<Reservation, String> tripColumn;
     @FXML private TableColumn<Reservation, String> dateColumn;
     @FXML private TableColumn<Reservation, String> statusColumn;
@@ -37,10 +34,10 @@ public class DriverDashboardController {
     public void initialize() {
         configureTableColumns();
         loadAllReservations();
+        styleTable();
     }
 
     private void configureTableColumns() {
-
         tripColumn.setCellValueFactory(cellData ->
                 javafx.beans.binding.Bindings.createStringBinding(() ->
                         "TRJ " + cellData.getValue().getTripId()));
@@ -59,128 +56,114 @@ public class DriverDashboardController {
                                 cellData.getValue().getNombrePlaces(),
                                 cellData.getValue().getTypeHandicap())));
 
-        // Style des cellules de statut
-        statusColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(String status, boolean empty) {
-                super.updateItem(status, empty);
+        actionColumn.setCellFactory(createActionCellFactory());
+    }
 
-                if (empty || status == null) {
-                    setText(null);
-                    setStyle("");
-                } else {
-                    setText(status);
-                    switch (status.toLowerCase()) {
-                        case "confirmée":
-                            setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 3 8; -fx-border-radius: 12; -fx-background-radius: 12;");
-                            break;
-                        case "en attente":
-                            setStyle("-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 3 8; -fx-border-radius: 12; -fx-background-radius: 12;");
-                            break;
-                        case "refusée":
-                            setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 3 8; -fx-border-radius: 12; -fx-background-radius: 12;");
-                            break;
-                        default:
-                            setStyle("");
+    private Callback<TableColumn<Reservation, Void>, TableCell<Reservation, Void>> createActionCellFactory() {
+        return new Callback<>() {
+            @Override
+            public TableCell<Reservation, Void> call(final TableColumn<Reservation, Void> param) {
+                return new TableCell<>() {
+                    private final Button acceptBtn = new Button("Accepter");
+                    private final Button rejectBtn = new Button("Refuser");
+                    private final HBox buttons = new HBox(10, acceptBtn, rejectBtn);
+                    private final Label statusLabel = new Label();
+
+                    {
+                        acceptBtn.setStyle("-fx-background-color: #27ae60; -fx-text-fill: white;");
+                        rejectBtn.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
+                        buttons.setStyle("-fx-alignment: center;");
+
+                        acceptBtn.setOnAction(event -> {
+                            Reservation res = getTableView().getItems().get(getIndex());
+                            handleReservationAction(res, Reservation.ReservationStatus.CONFIRMEE);
+                        });
+
+                        rejectBtn.setOnAction(event -> {
+                            Reservation res = getTableView().getItems().get(getIndex());
+                            handleReservationAction(res, Reservation.ReservationStatus.REFUSEE);
+                        });
                     }
-                }
+
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            Reservation res = getTableView().getItems().get(getIndex());
+                            if (res.getEtatReservation() == Reservation.ReservationStatus.EN_ATTENTE) {
+                                setGraphic(buttons);
+                            } else {
+                                statusLabel.setText(res.getEtatReservation() == Reservation.ReservationStatus.CONFIRMEE
+                                        ? "✓ Acceptée" : "✗ Refusée");
+                                setGraphic(statusLabel);
+                            }
+                        }
+                    }
+                };
             }
-        });
+        };
+    }
 
-        // Colonne d'actions avec style intégré
-        actionColumn.setCellFactory(column -> new TableCell<>() {
-            private final Button acceptBtn = new Button("Accepter");
-            private final Button rejectBtn = new Button("Refuser");
-            private final HBox buttons = new HBox(10, acceptBtn, rejectBtn);
-            private final Label statusLabel = new Label();
+    private void styleTable() {
+        // Style des en-têtes
+        reservationsTable.lookupAll(".column-header").forEach(header ->
+                header.setStyle("-fx-background-color: #2196f3; -fx-text-fill: white; -fx-font-weight: bold;"));
 
-            {
-                // Style des boutons
-                acceptBtn.setStyle("-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;");
-                rejectBtn.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;");
-                statusLabel.setStyle("-fx-text-fill: #666; -fx-font-style: italic;");
-                buttons.setStyle("-fx-alignment: center; -fx-padding: 5;");
+        // Style des lignes
+        reservationsTable.setRowFactory(tv -> {
+            TableRow<Reservation> row = new TableRow<>();
+            row.setStyle("-fx-cell-size: 40px;");
 
-                acceptBtn.setOnAction(event -> {
-                    Reservation res = getTableView().getItems().get(getIndex());
-                    handleReservationAction(res, Reservation.ReservationStatus.CONFIRMEE);
-                });
-
-                rejectBtn.setOnAction(event -> {
-                    Reservation res = getTableView().getItems().get(getIndex());
-                    handleReservationAction(res, Reservation.ReservationStatus.REFUSEE);
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || getIndex() >= getTableView().getItems().size()) {
-                    setGraphic(null);
-                } else {
-                    Reservation res = getTableView().getItems().get(getIndex());
-                    if (res.getEtatReservation() == Reservation.ReservationStatus.EN_ATTENTE) {
-                        setGraphic(buttons);
+            row.itemProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal != null) {
+                    if (row.getIndex() % 2 == 1) {
+                        row.setStyle("-fx-background-color: #e3f2fd;");
                     } else {
-                        String statusText = res.getEtatReservation() == Reservation.ReservationStatus.CONFIRMEE
-                                ? "✓ Acceptée" : "✗ Refusée";
-                        statusLabel.setText(statusText);
-                        setGraphic(statusLabel);
+                        row.setStyle("-fx-background-color: white;");
                     }
                 }
-            }
+            });
+            return row;
         });
     }
 
     private void handleReservationAction(Reservation reservation, Reservation.ReservationStatus status) {
         try {
-            // Vérifier si la réservation est déjà traitée
             if (reservation.getEtatReservation() != Reservation.ReservationStatus.EN_ATTENTE) {
-                showAlert("Information", "Réservation déjà traitée",
-                        "Cette réservation a déjà été " + reservation.getEtatReservationAsString().toLowerCase());
+                showAlert("Information", "Réservation déjà traitée");
                 return;
             }
 
-            // Mettre à jour le statut
             reservationServices.updateReservationStatus(reservation.getId(), status);
 
-            // Si confirmée, mettre à jour les places disponibles
             if (status == Reservation.ReservationStatus.CONFIRMEE) {
                 Trip trip = tripServices.getOneById(reservation.getTripId());
                 if (trip != null) {
-                    int newAvailableSeats = trip.getAvailableSeats() - reservation.getNombrePlaces();
-                    if (newAvailableSeats >= 0) {
-                        trip.setAvailableSeats(newAvailableSeats);
+                    int newSeats = trip.getAvailableSeats() - reservation.getNombrePlaces();
+                    if (newSeats >= 0) {
+                        trip.setAvailableSeats(newSeats);
                         tripServices.modifier(trip);
                     } else {
-                        // Annuler la mise à jour si pas assez de places
-                        reservationServices.updateReservationStatus(reservation.getId(), Reservation.ReservationStatus.EN_ATTENTE);
-                        throw new Exception("Pas assez de places disponibles dans ce trajet");
+                        reservationServices.updateReservationStatus(reservation.getId(),
+                                Reservation.ReservationStatus.EN_ATTENTE);
+                        throw new Exception("Pas assez de places disponibles");
                     }
                 }
             }
 
-            showAlert("Succès", "Réservation mise à jour",
-                    "La réservation #" + reservation.getId() + " a été " +
-                            (status == Reservation.ReservationStatus.CONFIRMEE ? "acceptée" : "refusée") + " avec succès.");
-
-            // Actualiser le tableau
+            showAlert("Succès", "Réservation mise à jour");
             loadAllReservations();
         } catch (Exception e) {
-            showAlert("Erreur", "Échec de la mise à jour", e.getMessage());
+            showAlert("Erreur", e.getMessage());
         }
     }
 
     private void loadAllReservations() {
-        try {
-            reservationsTable.setItems(FXCollections.observableArrayList(
-                    reservationServices.getall()
-            ));
-            reservationsTable.refresh();
-        } catch (Exception e) {
-            showAlert("Erreur", "Chargement des réservations",
-                    "Impossible de charger les réservations: " + e.getMessage());
-        }
+        reservationsTable.setItems(FXCollections.observableArrayList(
+                reservationServices.getall()
+        ));
     }
 
     @FXML
@@ -189,19 +172,17 @@ public class DriverDashboardController {
             Parent root = FXMLLoader.load(getClass().getResource("/statut-reservation.fxml"));
             Stage stage = (Stage) reservationsTable.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Statut des Réservations");
-            stage.centerOnScreen();
+            stage.show();
         } catch (IOException e) {
-            showAlert("Erreur", "Navigation impossible",
-                    "Impossible de charger la vue précédente: " + e.getMessage());
+            showAlert("Erreur", "Impossible de charger la vue");
         }
     }
 
-    private void showAlert(String title, String header, String content) {
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
         alert.showAndWait();
     }
 }

@@ -12,7 +12,7 @@ public class mainFx extends Application {
     public void start(Stage primaryStage) {
         try {
             // Load the FXML file
-            Parent root = FXMLLoader.load(getClass().getResource("/confirmation-trip.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/statut-reservation.fxml"));
             // Create the scene
             Scene scene = new Scene(root);
 
