@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.esprit.tn.pidev.controllers.AdminReservationController"
+      spacing="20" style="-fx-padding: 25; -fx-background-color: #f5f7fa;">
+    <!-- Titre avec bouton de navigation -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Button text="VoirTrajets" onAction="#navigateToAdminTrip"
+                style="-fx-background-color: #4f46e5; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 5;"/>
+        <Label text="Réservations" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);"/>
+    </HBox>
+
+    <HBox spacing="20">
+        <!-- TableView des réservations -->
+        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-border-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" HBox.hgrow="ALWAYS" prefWidth="500">
+            <!-- Barre de recherche et filtres -->
+            <HBox spacing="10">
+                <VBox spacing="5">
+                    <Label text="Départ:" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="searchDepartureField" promptText="Rechercher par départ" prefWidth="150"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Destination:" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="searchDestinationField" promptText="Rechercher par destination" prefWidth="150"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Statut:" style="-fx-font-weight: bold;"/>
+                    <ComboBox fx:id="statusFilter" prefWidth="120"/>
+                </VBox>
+            </HBox>
+            <!-- TableView -->
+            <TableView fx:id="reservationsTable" prefHeight="500" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="departureColumn" text="DÉPART" prefWidth="120"/>
+                    <TableColumn fx:id="destinationColumn" text="DESTINATION" prefWidth="120"/>
+                    <TableColumn fx:id="dateColumn" text="DATE" prefWidth="120"/>
+                    <TableColumn fx:id="statusColumn" text="STATUT" prefWidth="80"/>
+                    <TableColumn fx:id="priceColumn" text="PRIX (DT)" prefWidth="60"/>
+                    <TableColumn fx:id="placesColumn" text="PLACES" prefWidth="60"/>
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+        <!-- Statistiques -->
+        <VBox spacing="15" style="-fx-padding: 15; -fx-background-color: white; -fx-border-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" HBox.hgrow="ALWAYS" prefWidth="500">
+            <Label text="Statistiques des Réservations" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+            <BarChart fx:id="reservationsChart" prefHeight="450" animated="false" legendVisible="true" VBox.vgrow="ALWAYS">
+                <xAxis>
+                    <CategoryAxis label="Catégorie" style="-fx-font-size: 14px;"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Nombre" style="-fx-font-size: 14px;" />
+                </yAxis>
+            </BarChart>
+            <HBox spacing="20" alignment="CENTER">
+                <Button fx:id="monthlyStatsBtn" text="Par mois" prefWidth="130" prefHeight="35"
+                        style="-fx-background-color: #4f46e5; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button fx:id="statusStatsBtn" text="Par statut" prefWidth="130" prefHeight="35"
+                        style="-fx-background-color: #4f46e5; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button fx:id="destinationsBtn" text="Destinations" prefWidth="130" prefHeight="35"
+                        style="-fx-background-color: #4f46e5; -fx-text-fill: white; -fx-font-size: 14px;"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

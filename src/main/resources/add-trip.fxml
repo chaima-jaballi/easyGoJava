@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.esprit.tn.pidev.controllers.AddTripController"
+      spacing="20" alignment="CENTER" style="-fx-padding: 40; -fx-background-color: linear-gradient(to bottom right, #E0EAFC, #CFDEF3);"
+      prefWidth="1000" prefHeight="700">
+
+    <Label text="Ajouter un Trip" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #042c54; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);"/>
+
+    <GridPane hgap="25" vgap="25" alignment="CENTER"
+              style="-fx-background-color: rgba(255, 255, 255, 0.9); -fx-background-radius: 15; -fx-padding: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0);"
+              prefWidth="800">
+
+        <!-- Champ Date de réservation -->
+        <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <ImageView fitWidth="40" fitHeight="40">
+                <Image url="@icons/calendrier.png"/>
+            </ImageView>
+            <DatePicker fx:id="tripDateField" promptText="Date de réservation"
+                        style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); -fx-font-size: 14px; -fx-pref-width: 300; -fx-pref-height: 40;"/>
+        </HBox>
+
+        <!-- Champ Type de voyage -->
+        <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ImageView fitWidth="40" fitHeight="40">
+                <Image url="@icons/notes.png"/>
+            </ImageView>
+            <ComboBox fx:id="tripTypeComboBox" promptText="Type de voyage"
+                      style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); -fx-font-size: 14px; -fx-pref-width: 300; -fx-pref-height: 40;"/>
+        </HBox>
+
+        <!-- Champ Point de départ -->
+        <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <ImageView fitWidth="40" fitHeight="40">
+                <Image url="@icons/departure.png"/>
+            </ImageView>
+            <TextField fx:id="departurePointField" promptText="Point de départ"
+                       style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); -fx-font-size: 14px; -fx-pref-width: 300; -fx-pref-height: 40;"/>
+        </HBox>
+
+        <!-- Champ Destination -->
+        <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <ImageView fitWidth="40" fitHeight="40">
+                <Image url="@icons/destination.png"/>
+            </ImageView>
+            <TextField fx:id="destinationField" promptText="Destination"
+                       style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); -fx-font-size: 14px; -fx-pref-width: 300; -fx-pref-height: 40;"/>
+        </HBox>
+
+        <!-- Champ Points de relais -->
+        <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <ImageView fitWidth="40" fitHeight="40">
+                <Image url="@icons/relay.png"/>
+            </ImageView>
+            <TextField fx:id="relayPointsField" promptText="Points de relais (séparés par des virgules)"
+                       style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); -fx-font-size: 14px; -fx-pref-width: 300; -fx-pref-height: 40;"/>
+        </HBox>
+
+        <!-- Champ Heure de départ -->
+        <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <ImageView fitWidth="40" fitHeight="40">
+                <Image url="@icons/temps.png"/>
+            </ImageView>
+            <ComboBox fx:id="departureTimePicker" promptText="HH:mm"
+                      style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); -fx-font-size: 14px; -fx-pref-width: 300; -fx-pref-height: 40;"/>
+        </HBox>
+
+        <!-- Champ Heure de retour -->
+        <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <ImageView fitWidth="40" fitHeight="40">
+                <Image url="@icons/return.png"/>
+            </ImageView>
+            <ComboBox fx:id="returnTimePicker" promptText="HH:mm"
+                      style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); -fx-font-size: 14px; -fx-pref-width: 300; -fx-pref-height: 40;"/>
+        </HBox>
+
+        <!-- Champ Nombre de places -->
+        <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <ImageView fitWidth="40" fitHeight="40">
+                <Image url="@icons/seats.png"/>
+            </ImageView>
+            <TextField fx:id="seatsField" promptText="Nombre de places"
+                       style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); -fx-font-size: 14px; -fx-pref-width: 300; -fx-pref-height: 40;"/>
+        </HBox>
+
+        <!-- Champ Montant -->
+        <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <ImageView fitWidth="40" fitHeight="40">
+                <Image url="@icons/price.png"/>
+            </ImageView>
+            <TextField fx:id="contributionField" promptText="Montant (DT)"
+                       style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); -fx-font-size: 14px; -fx-pref-width: 300; -fx-pref-height: 40;"/>
+        </HBox>
+
+    </GridPane>
+
+    <!-- Bouton Ajouter -->
+    <Button text="Ajouter" fx:id="addButton" onAction="#handleAddTrip"
+            style="-fx-background-color: linear-gradient(to bottom right, #1A2980, #26D0CE); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px; -fx-border-radius: 10; -fx-padding: 15 40; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);"/>
+</VBox>

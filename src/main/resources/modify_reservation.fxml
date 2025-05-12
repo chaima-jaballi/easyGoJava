@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.esprit.tn.pidev.controllers.ModifyReservationController"
+      spacing="20" style="-fx-padding: 25; -fx-background-color: #f8f9fa;"
+      prefWidth="400" prefHeight="300">
+
+    <Label text="Modifier Réservation" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <GridPane hgap="15" vgap="15" style="-fx-padding: 10;">
+        <columnConstraints>
+            <ColumnConstraints prefWidth="120" halignment="RIGHT"/>
+            <ColumnConstraints prefWidth="200"/>
+        </columnConstraints>
+
+        <!-- Nombre de places -->
+        <Label text="Nombre de places:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="placesField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <!-- Lieu d'escale -->
+        <Label text="Lieu d'escale:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="escaleField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Type de handicap -->
+        <Label text="Type de handicap:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="handicapField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Prix -->
+        <Label text="Nouveau prix:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Label fx:id="priceLabel" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"
+               GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Boutons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 10;">
+        <Button text="Annuler" onAction="#handleCancel"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 100;"/>
+        <Button text="Enregistrer" onAction="#handleSave"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 100;"/>
+    </HBox>
+</VBox>

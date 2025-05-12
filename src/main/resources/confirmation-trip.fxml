@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.esprit.tn.pidev.controllers.ConfirmationTripController"
+      spacing="30" alignment="CENTER"
+      style="-fx-padding: 40; -fx-background-color: linear-gradient(to bottom right, #E0EAFC, #CFDEF3);"
+      prefWidth="1000" prefHeight="700">
+
+    <!-- Titre principal -->
+    <Label text="Félicitations !"
+           style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to right, #1A2980, #26D0CE); -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);"/>
+
+    <!-- Sous-titre -->
+    <Label text="Votre réservation a été effectuée avec succès !"
+           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #042c54;"/>
+
+    <!-- Message de confirmation -->
+    <VBox alignment="CENTER" spacing="10"
+          style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0); -fx-pref-width: 800;">
+        <Label text="Un email de confirmation a été envoyé à votre adresse e-mail."
+               style="-fx-font-size: 18px; -fx-text-fill: #34495e;"/>
+    </VBox>
+
+    <!-- Icône de confirmation -->
+    <ImageView fitWidth="150" fitHeight="150" onMouseEntered="#handleImageHoverEnter" onMouseExited="#handleImageHoverExit">
+        <Image url="@icons/Confirm.png"/>
+        <effect>
+            <Glow level="0.0" fx:id="imageGlow"/>
+        </effect>
+    </ImageView>
+
+    <!-- Boutons d'action -->
+    <HBox spacing="30" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
+        <Button text="Nouvelle réservation" onAction="#handleNewSearch"
+                style="-fx-background-color: linear-gradient(to bottom right, #2ecc71, #27ae60); -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 15 40; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);"
+                onMouseEntered="#handleHoverEnter" onMouseExited="#handleHoverExit">
+            <graphic>
+                <ImageView fitWidth="25" fitHeight="25">
+                    <Image url="@icons/ajouter.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+</VBox>

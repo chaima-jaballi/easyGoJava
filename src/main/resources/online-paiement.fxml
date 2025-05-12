@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.esprit.tn.pidev.controllers.OnlinePaymentController"
+      spacing="30" alignment="CENTER"
+      style="-fx-padding: 40; -fx-background-color: linear-gradient(to bottom right, #E0EAFC, #CFDEF3);"
+      prefWidth="800" prefHeight="800">
+    <!-- Image de la carte bancaire -->
+    <ImageView fx:id="cardImageView" fitWidth="350" fitHeight="200">
+        <Image url="@icons/carte.png"/>
+    </ImageView>
+
+    <!-- Champs de saisie -->
+    <GridPane hgap="10" vgap="10" style="-fx-padding: 20px; -fx-background-color: rgba(255, 255, 255, 0.9); -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.0, 0, 5);">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <!-- Numéro de carte -->
+        <Label text="Card Number:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-size: 16px; -fx-text-fill: #042c54; -fx-font-family: 'Arial';"/>
+        <HBox spacing="5" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <TextField fx:id="cardNumberField" promptText="4532 3100 9999 1048" style="-fx-pref-width: 220; -fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);"/>
+            <ImageView fitWidth="20" fitHeight="20">
+                <Image url="@icons/card.png"/>
+            </ImageView>
+        </HBox>
+
+        <!-- Nom du titulaire -->
+        <Label text="Cardholder Name:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-size: 16px; -fx-text-fill: #042c54; -fx-font-family: 'Arial';"/>
+        <TextField fx:id="cardHolderField" promptText="Cardholder Name" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);"/>
+
+        <!-- Date d'expiration -->
+        <Label text="Expire Date:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-size: 16px; -fx-text-fill: #042c54; -fx-font-family: 'Arial';"/>
+        <HBox spacing="5" GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <TextField fx:id="monthField" promptText="MM" style="-fx-pref-width: 50; -fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);"/>
+            <TextField fx:id="yearField" promptText="YY" style="-fx-pref-width: 50; -fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);"/>
+        </HBox>
+
+        <!-- CVV -->
+        <Label text="CVV:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-size: 16px; -fx-text-fill: #042c54; -fx-font-family: 'Arial';"/>
+        <HBox spacing="5" GridPane.rowIndex="3" GridPane.columnIndex="1">
+            <TextField fx:id="cvvField" promptText="***" style="-fx-pref-width: 60; -fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);"/>
+            <ImageView fitWidth="20" fitHeight="20">
+                <Image url="@icons/lock.png"/>
+            </ImageView>
+        </HBox>
+
+        <!-- Montant -->
+        <Label text="Montant:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-size: 16px; -fx-text-fill: #042c54; -fx-font-family: 'Arial';"/>
+        <HBox spacing="5" GridPane.rowIndex="4" GridPane.columnIndex="1">
+            <TextField fx:id="montantField" promptText="Montant" editable="true" />        </HBox>
+
+        <!-- Email -->
+        <Label text="Email:" GridPane.rowIndex="5" GridPane.columnIndex="0" style="-fx-font-size: 16px; -fx-text-fill: #042c54; -fx-font-family: 'Arial';"/>
+        <TextField fx:id="emailField" promptText="example@example.com" GridPane.rowIndex="5" GridPane.columnIndex="1" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5; -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);"/>
+    </GridPane>
+
+    <!-- Boutons -->
+    <HBox spacing="30">
+        <Button text="Payer" fx:id="payButton" onAction="#handlePayment"
+                style="-fx-background-color: linear-gradient(to bottom right, #1A2980, #26D0CE); -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 12px; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);"/>
+        <Button text="Annuler" fx:id="cancelButton" onAction="#handleCancel"
+                style="-fx-background-color: linear-gradient(to bottom right, #E74C3C, #C0392B); -fx-text-fill: white; -fx-font-size: 17px; -fx-font-weight: bold; -fx-padding: 12px; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);"/>
+    </HBox>
+</VBox>

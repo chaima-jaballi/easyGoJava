@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.esprit.tn.pidev.controllers.ReservationFormController"
+      spacing="20" style="-fx-padding: 20;" prefWidth="400">
+
+    <Label fx:id="tripInfoLabel" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+    <Label fx:id="priceLabel" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Type de handicap:" GridPane.rowIndex="0"/>
+        <ComboBox fx:id="handicapTypeComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Lieu d'escale:" GridPane.rowIndex="1"/>
+        <TextField fx:id="escaleField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Button fx:id="confirmButton" text="Confirmer la réservation" onAction="#handleConfirmReservation"
+            style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+</VBox>

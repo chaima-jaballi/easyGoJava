@@ -1,0 +1,47 @@
+/* Chemin: src/main/resources/styles/chart.css */
+.chart {
+    -fx-padding: 10px;
+    -fx-background-color: transparent;
+}
+
+.chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151;
+}
+
+.axis-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4b5563;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #374151;
+    -fx-font-size: 12px;
+}
+
+.default-color0.chart-bar {
+    -fx-bar-fill: #4f46e5;
+}
+
+.default-color1.chart-bar {
+    -fx-bar-fill: #10b981;
+}
+
+.default-color2.chart-bar {
+    -fx-bar-fill: #f59e0b;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #e5e7eb;
+}
