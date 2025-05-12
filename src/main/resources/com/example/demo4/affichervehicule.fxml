@@ -15,15 +15,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: linear-gradient(to bottom right, #E0EAFC, #CFDEF3);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo4.AffichervehiculeController">
+<AnchorPane prefHeight="718.0" prefWidth="855.0" style="-fx-background-color: linear-gradient(to bottom right, #E0EAFC, #CFDEF3);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo4.AffichervehiculeController">
     <!-- Header Section -->
     <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
         <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #042c54; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);" text="LISTE DES VÉHICULES" />
     </VBox>
 
-    <ScrollPane layoutX="20.0" layoutY="100.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background: transparent; -fx-background-color: rgba(255, 255, 255, 0.9); -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0);">
+    <ScrollPane layoutX="20.0" layoutY="58.0" prefHeight="442.0" prefWidth="682.0" style="-fx-background: transparent; -fx-background-color: rgba(255, 255, 255, 0.9); -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0);" AnchorPane.bottomAnchor="160.20000000000005" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="7.600000000000023" AnchorPane.topAnchor="58.200000000000045">
         <content>
-            <GridPane fx:id="gridev" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: transparent;">
+            <GridPane fx:id="gridev" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: transparent;">
                 <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -38,7 +38,7 @@
     </ScrollPane>
 
     <!-- Search and Filter Section -->
-    <VBox layoutX="14.0" layoutY="527.0" spacing="15" style="-fx-background-color: rgba(255, 255, 255, 0.9); -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0);">
+    <VBox layoutX="20.0" layoutY="558.0" spacing="15" style="-fx-background-color: rgba(255, 255, 255, 0.9); -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0);">
         <HBox alignment="CENTER" spacing="15">
             <ComboBox fx:id="triCritere" prefWidth="171.0" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;">
                 <items>
@@ -67,7 +67,7 @@
     </VBox>
 
     <!-- Action Buttons -->
-    <Button fx:id="ajouter" layoutX="510.0" layoutY="527.0" mnemonicParsing="false" onAction="#ajoutervehicule" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom right, #1A2980, #26D0CE); -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="Retourner page admin">
+    <Button fx:id="ajouter" layoutX="540.0" layoutY="579.0" mnemonicParsing="false" onAction="#ajoutervehicule" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom right, #1A2980, #26D0CE); -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="Retourner page admin">
         <font>
             <Font size="16.0" />
         </font>

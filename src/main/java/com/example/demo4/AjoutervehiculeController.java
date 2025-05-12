@@ -4,7 +4,7 @@
  * and open the temvehiculee in the editor.
  */
 package com.example.demo4;
-import java.util.Objects;
+
 import com.example.demo4.entities.vehicule;
 import com.example.demo4.services.categorieService;
 import com.example.demo4.services.vehiculeService;
@@ -380,40 +380,64 @@ public void initialize(URL url, ResourceBundle rb) {
         }
     }
     @FXML
-    private void uploadImage(ActionEvent ev)throws FileNotFoundException, IOException  {
-
+    private void uploadImage(ActionEvent ev) {
         Random rand = new Random();
-        int x = rand.nextInt(1000);
+        int x = rand.nextInt(1000); // Random to generate unique file names
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Upload File Path");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-        File file = fileChooser.showOpenDialog(null);
-        String DBPath = "C:\\\\xampp\\\\htdocs\\\\imageP\\\\"  + x + ".jpg";
+
+        File file = fileChooser.showOpenDialog(null); // Open file dialog
         if (file != null) {
-            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
-            FileOutputStream Fdestination = new FileOutputStream(DBPath);
-            BufferedInputStream bin = new BufferedInputStream(Fsource);
-            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
-            System.out.println(file.getAbsoluteFile());
-            String path=file.getAbsolutePath();
-            Image img = new Image(file.toURI().toString());
-            imageview.setImage(img);    
-            imageevField.setText(DBPath);
-            int b = 0;
-            while (b != -1) {
-                b = bin.read();
-                bou.write(b);
+            // Define the path to save the uploaded image on the server
+            String DBPath = "C:\\xampp\\htdocs\\img\\" + x + ".jpg";
+
+            // Ensure the target directory exists
+            File directory = new File("C:\\xampp\\htdocs\\img");
+            if (!directory.exists()) {
+                directory.mkdirs(); // Create the directory if it doesn't exist
             }
-            bin.close();
-            bou.close();          
+
+            // Streams for file copying
+            try (FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
+                 FileOutputStream Fdestination = new FileOutputStream(DBPath);
+                 BufferedInputStream bin = new BufferedInputStream(Fsource);
+                 BufferedOutputStream bou = new BufferedOutputStream(Fdestination)) {
+
+                // Display the image in the ImageView
+                Image img = new Image(file.toURI().toString());
+                imageview.setImage(img);
+
+                // Set the path for the image field
+                imageevField.setText(DBPath);
+
+                // Read and write file byte-by-byte
+                int b;
+                while ((b = bin.read()) != -1) {
+                    bou.write(b);
+                }
+                bou.flush(); // Make sure all data is written
+
+            } catch (IOException ex) {
+                // Log the exception to the console for debugging purposes
+                System.out.println("Error during file upload: " + ex.getMessage());
+
+                // Show an error alert with specific information
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("File Upload Error");
+                alert.setHeaderText("Error during file upload");
+                alert.setContentText("An error occurred while uploading the image.\nDetails: " + ex.getMessage());
+                alert.showAndWait();
+            }
         } else {
-            System.out.println("error");
+            // If the user cancels the file selection
+            System.out.println("File selection was canceled.");
         }
     }
 
 
-    
+
 
     @FXML
     private void rechercherev(KeyEvent ev) {
