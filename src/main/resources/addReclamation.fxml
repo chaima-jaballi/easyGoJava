@@ -10,25 +10,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f8f9fa;"
-            xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.esprit.tn.pidev.controllers.TicketReclamationController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.tn.pidev.controllers.TicketReclamationController">
     <children>
         <!-- Image en haut à droite -->
-        <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="620.0" layoutY="120.0" opacity="0.9"
-                   pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="620.0" layoutY="120.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@image/a.jpg" />
             </image>
         </ImageView>
 
         <!-- Titre -->
-        <Label layoutX="180.0" layoutY="20.0" prefHeight="50.0" prefWidth="450.0"
-               style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white;
-                      -fx-background-color: #3b82f6; -fx-padding: 10px;
-                      -fx-border-radius: 15px; -fx-background-radius: 15px;
-                      -fx-alignment: center;"
-               text="Formulaire de Réclamation">
+        <Label layoutX="180.0" layoutY="20.0" prefHeight="50.0" prefWidth="450.0" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white;                       -fx-background-color: #3b82f6; -fx-padding: 10px;                       -fx-border-radius: 15px; -fx-background-radius: 15px;                       -fx-alignment: center;" text="Formulaire de Réclamation">
             <font>
                 <Font name="Cambria Bold" size="26.0" />
             </font>
@@ -46,22 +38,10 @@
         <DatePicker fx:id="dateCreationField" layoutX="190.0" layoutY="310.0" prefHeight="35.0" prefWidth="280.0" />
 
         <!-- Boutons -->
-        <Button fx:id="retourButton" layoutX="526.0" layoutY="370.0" prefHeight="45.0" prefWidth="168.0"
-                style="-fx-background-color: #3b82f6; -fx-border-color: transparent;
-                       -fx-border-radius: 22px; -fx-font-size: 16px; -fx-text-fill: white;
-                       -fx-font-weight: bold; -fx-cursor: hand;"
-                text="Mes Réclamations" />
+        <Button fx:id="retourButton" layoutX="526.0" layoutY="370.0" prefHeight="45.0" prefWidth="168.0" style="-fx-background-color: #3b82f6; -fx-border-color: transparent;                        -fx-border-radius: 22px; -fx-font-size: 16px; -fx-text-fill: white;                        -fx-font-weight: bold; -fx-cursor: hand;" text="Mes Réclamations" />
 
-        <Button fx:id="envoyerButton" layoutX="180.0" layoutY="370.0" prefHeight="45.0" prefWidth="140.0"
-                style="-fx-background-color: #3b82f6; -fx-border-color: transparent;
-                       -fx-border-radius: 22px; -fx-font-size: 16px; -fx-text-fill: white;
-                       -fx-font-weight: bold; -fx-cursor: hand;"
-                text="Envoyer" />
+        <Button fx:id="envoyerButton" layoutX="180.0" layoutY="370.0" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #3b82f6; -fx-border-color: transparent;                        -fx-border-radius: 22px; -fx-font-size: 16px; -fx-text-fill: white;                        -fx-font-weight: bold; -fx-cursor: hand;" text="Envoyer" />
 
-        <Button fx:id="supprimerButton" layoutX="340.0" layoutY="370.0" prefHeight="45.0" prefWidth="140.0"
-                style="-fx-background-color: white; -fx-border-color: #3b82f6;
-                       -fx-border-radius: 22px; -fx-font-size: 16px; -fx-text-fill: #3b82f6;
-                       -fx-font-weight: bold; -fx-cursor: hand;"
-                text="Annuler" />
+        <Button fx:id="supprimerButton" layoutX="340.0" layoutY="370.0" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: #3b82f6;                        -fx-border-radius: 22px; -fx-font-size: 16px; -fx-text-fill: #3b82f6;                        -fx-font-weight: bold; -fx-cursor: hand;" text="Annuler" />
     </children>
 </AnchorPane>
