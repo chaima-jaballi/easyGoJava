@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="911.0" prefWidth="1313.0" style="-fx-background-color: #FFDAB9;" stylesheets="@fullpackstyling.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo4.AfficheroffreController">
+   <children>
+      <TextField fx:id="descriptionevField" layoutX="766.0" layoutY="366.0" prefHeight="33.0" prefWidth="214.0" promptText="contenu" style="-fx-background-radius: 30;" />
+      <TableView fx:id="tableoffre" layoutX="70.0" layoutY="373.0" onMouseClicked="#choisiroffre" prefHeight="318.0" prefWidth="680.0">
+         <columns>
+            <TableColumn fx:id="iduserTv" prefWidth="109.0" text="id utilisateur" />
+            <TableColumn fx:id="idevTv" prefWidth="115.0" text="id vehicule" />
+            <TableColumn fx:id="datePartTv" prefWidth="137.0" text="date offre" />
+            <TableColumn fx:id="descriptionevTv" prefWidth="478.0" text="contenu" />
+         </columns>
+      </TableView>
+      <Label fx:id="totalPrixLabel" layoutX="402.0" layoutY="310.0" prefHeight="24.0" prefWidth="929.0" text="Total: 0 €" />
+
+      <Label layoutX="205.0" layoutY="297.0" prefHeight="49.0" prefWidth="175.0" text="Prix totale:" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="33.0" />
+         </font></Label>
+
+      <Button fx:id="reserverevButton" layoutX="955.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#reserverev" prefHeight="44.0" prefWidth="221.0" style="-fx-background-radius: 30;" text="Ajouter au offre" />
+
+      <Button fx:id="modifierPartBtn" layoutX="1025.0" layoutY="570.0" mnemonicParsing="false" onAction="#modifieroffre" prefHeight="59.0" prefWidth="201.0" style="-fx-background-radius: 30;" text="modifier offre" textFill="#f05c00" />
+      <Button fx:id="supprimerPartBtn" layoutX="1025.0" layoutY="667.0" mnemonicParsing="false" onAction="#supprimeroffre" prefHeight="59.0" prefWidth="201.0" style="-fx-background-radius: 30;" text="supprimer offre" textFill="#ff4400">
+         <font>
+            <Font size="11.0" />
+         </font></Button>
+      <TextField fx:id="idread" layoutX="764.0" layoutY="417.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Offre" />
+      <TextField fx:id="iduserField" layoutX="764.0" layoutY="487.0" prefHeight="45.0" prefWidth="214.0" promptText="Id Utilisateur" />
+      <TextField fx:id="idevField" layoutX="764.0" layoutY="554.0" prefHeight="45.0" prefWidth="214.0" promptText="Id vehicule" />
+      <TextField fx:id="datepartField1" layoutX="764.0" layoutY="622.0" prefHeight="45.0" prefWidth="214.0" promptText="Date Offre" />
+      <DatePicker fx:id="datepartField" layoutX="764.0" layoutY="689.0" prefHeight="45.0" prefWidth="221.0" promptText="entrer le date" />
+      <Label layoutX="402.0" layoutY="104.0" prefHeight="60.0" prefWidth="424.0" text="AFFICHER Offre">
+         <font>
+            <Font name="Calisto MT Bold" size="28.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startY="1.0">
+               <stops>
+                  <Stop color="#8a8a8ae8" />
+                  <Stop color="#ff1600" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Button fx:id="ajouter" layoutX="28.0" layoutY="38.0" mnemonicParsing="false" onAction="#ajoutervehicule" prefHeight="59.0" prefWidth="201.0" style="-fx-background-radius: 30;" text="Aller au vehicules" textFill="#ff4400">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="stat" layoutX="624.0" layoutY="170.0" mnemonicParsing="false" onAction="#stat" prefHeight="59.0" prefWidth="228.0" style="-fx-background-radius: 30;" text="Statistique des offres" textFill="#ff4400">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="cal" layoutX="371.0" layoutY="170.0" mnemonicParsing="false" onAction="#cal" prefHeight="59.0" prefWidth="236.0" style="-fx-background-radius: 30;" text="Consulter la Calendrier" textFill="#ff4400">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <TextField fx:id="chercherevField" layoutX="1017.0" layoutY="440.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#recherchervehicule" prefHeight="57.0" prefWidth="246.0" promptText="donner le nom d'vehicule" style="-fx-background-radius: 30;" />
+   </children>
+</AnchorPane>

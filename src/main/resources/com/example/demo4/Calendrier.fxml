@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.calendarfx.view.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="694.0" prefWidth="1112.0" style="-fx-background-color: #FFEFD5;" stylesheets="@fullpackstyling.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo4.CalendrierController">
+    <children>
+        <CalendarView fx:id="calendarView" layoutX="50.0" layoutY="50.0" prefHeight="579.0" prefWidth="972.0" />
+        <Button fx:id="cal" layoutX="819.0" layoutY="636.0" mnemonicParsing="false" onAction="#cal" prefHeight="39.0" prefWidth="246.0" style="-fx-background-radius: 30;" text="Aller aux offres" textFill="#ff4400">
+            <font>
+                <Font size="11.0" />
+            </font>
+        </Button>
+    </children>
+
+
+</AnchorPane>

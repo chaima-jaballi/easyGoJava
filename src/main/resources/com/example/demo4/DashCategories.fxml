@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<!-- L'image de fond -->
+
+<AnchorPane id="AnchorPane" prefHeight="896.0" prefWidth="1338.0" style="-fx-background-color: #FFEFD5;" stylesheets="@fullpackstyling.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo4.AjoutercategorieController">
+
+    <children>
+
+                <TextField fx:id="nameField" layoutX="280.0" layoutY="393.0" prefHeight="35.0" prefWidth="108.0" promptText="NOM categorie" style="-fx-background-radius: 30;" />
+
+                <Label layoutX="344.0" layoutY="179.0" prefHeight="0.0" prefWidth="392.0">
+                    <font>
+                        <Font name="Calisto MT Bold" size="28.0" />
+                    </font>
+                    <textFill>
+
+                    </textFill></Label>
+                <Button fx:id="supprimerBoutton" layoutX="547.0" layoutY="404.0" mnemonicParsing="false" onAction="#supprimercategorie" prefHeight="44.0" prefWidth="108.0" style="-fx-background-radius: 30;" text="SUPPRIMER" textFill="RED" />
+                <Button fx:id="ajouterButton" layoutX="547.0" layoutY="283.0" mnemonicParsing="false" onAction="#ajoutercategorie" prefHeight="44.0" prefWidth="108.0" style="-fx-background-radius: 30;" text="AJOUTER" textFill="#f80000" />
+                <Button fx:id="modifierBoutton" layoutX="547.0" layoutY="343.0" mnemonicParsing="false" onAction="#modifiercategorie" prefHeight="44.0" prefWidth="108.0" style="-fx-background-radius: 30;" text="MODIFIER" textFill="RED" />
+
+                <TableView fx:id="categorieTv" layoutX="394.0" layoutY="281.0" onMouseClicked="#choisirev" prefHeight="245.0" prefWidth="140.0" style="-fx-background-color: #FFE4B5;">
+                    <columns>
+                        <TableColumn fx:id="nomevTv" prefWidth="135.0" text="NOM categorie" />
+
+
+                    </columns>
+                </TableView>
+                <Button fx:id="afficherBouttonn" layoutX="865.0" layoutY="28.0" mnemonicParsing="false" onAction="#navigation" prefHeight="44.0" prefWidth="160.0" style="-fx-background-radius: 30;" text="Affichage vehicules" textFill="RED" />
+
+                <Label fx:id="idLabel" layoutX="31.0" layoutY="98.0" prefHeight="18.0" prefWidth="37.0" />
+                <TextField fx:id="idmodifierField" layoutX="284.0" layoutY="337.0" prefHeight="35.0" prefWidth="99.0" promptText="Id categorie" style="-fx-background-radius: 30;" />
+                <ImageView fx:id="imageview" fitHeight="200.0" fitWidth="201.0" layoutX="1031.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
+                <TextField fx:id="rechercher" layoutX="280.0" layoutY="285.0" onKeyPressed="#rechercherev" prefHeight="25.0" prefWidth="108.0" promptText="chercher par NOM " />
+                <ImageView fx:id="QrCode" fitHeight="139.0" fitWidth="168.0" layoutX="23.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
+
+    </children>
+</AnchorPane>

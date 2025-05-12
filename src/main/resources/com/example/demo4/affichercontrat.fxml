@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane style="-fx-background-color: linear-gradient(to bottom right, #E0EAFC, #CFDEF3);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo4.AffichercontratController">
+
+    <!-- Header Section -->
+    <VBox alignment="CENTER" layoutX="0.0" layoutY="10.0" spacing="20" style="-fx-padding: 20;">
+        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #042c54; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);" text="GESTION DES CONTRATS" />
+    </VBox>
+
+    <!-- Search and Navigation -->
+    <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="80.0" spacing="15">
+        <TextField fx:id="rechercheField" prefHeight="33.0" prefWidth="300.0" promptText="Rechercher..." style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;" />
+        <Button fx:id="ajouter" mnemonicParsing="false" onAction="#ajoutervehicule" style="-fx-background-color: linear-gradient(to bottom right, #1A2980, #26D0CE); -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="Aller aux véhicules" />
+    </HBox>
+
+    <!-- Table View -->
+    <VBox layoutX="14.0" layoutY="113.0" prefHeight="318.0" prefWidth="1154.0" style="-fx-background-color: rgba(255, 255, 255, 0.9); -fx-background-radius: 15; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0);">
+        <TableView fx:id="tableContrats" prefHeight="318.0" prefWidth="1154.0" style="-fx-background-color: transparent;">
+            <columns>
+                <TableColumn fx:id="idContratCol" prefWidth="42.0" style="-fx-font-weight: bold;" text="ID" />
+                <TableColumn fx:id="idVehiculeCol" prefWidth="72.0" style="-fx-font-weight: bold;" text="ID vehicule" />
+                <TableColumn fx:id="nomPrenomCol" prefWidth="183.0" style="-fx-font-weight: bold;" text="Nom Prénom" />
+                <TableColumn fx:id="adresseCol" prefWidth="119.0" style="-fx-font-weight: bold;" text="Adresse" />
+                <TableColumn fx:id="telephoneCol" prefWidth="113.0" style="-fx-font-weight: bold;" text="Téléphone" />
+                <TableColumn fx:id="typeContratCol" prefWidth="107.0" style="-fx-font-weight: bold;" text="Type Contrat" />
+                <TableColumn fx:id="descriptionCol" prefWidth="234.0" style="-fx-font-weight: bold;" text="Description" />
+                <TableColumn fx:id="dateDebutCol" prefWidth="141.0" style="-fx-font-weight: bold;" text="Date Début" />
+                <TableColumn fx:id="dateFinCol" prefWidth="141.0" style="-fx-font-weight: bold;" text="Date Fin" />
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Form Section -->
+    <VBox layoutX="14.0" layoutY="450.0" prefWidth="300" spacing="15" style="-fx-background-color: rgba(255, 255, 255, 0.9); -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0);">
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #042c54;" text="Informations du Contrat" />
+
+        <TextField fx:id="idVehiculeField" prefHeight="33.0" prefWidth="214.0" promptText="ID Véhicule" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;" />
+        <TextField fx:id="nomPrenomField" prefHeight="33.0" prefWidth="214.0" promptText="Nom Prénom" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;" />
+        <TextField fx:id="adresseField" prefHeight="33.0" prefWidth="214.0" promptText="Adresse" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;" />
+        <TextField fx:id="telephoneField" prefHeight="33.0" prefWidth="214.0" promptText="Téléphone" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;" />
+        <TextField fx:id="typeContratField" prefHeight="33.0" prefWidth="214.0" promptText="Type de Contrat" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;" />
+        <TextField fx:id="descriptionField" prefHeight="33.0" prefWidth="214.0" promptText="Description" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;" />
+        <DatePicker fx:id="dateDebutField" prefHeight="33.0" prefWidth="214.0" promptText="Date Début" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;" />
+        <DatePicker fx:id="dateFinField" prefHeight="33.0" prefWidth="214.0" promptText="Date Fin" style="-fx-background-color: white; -fx-border-color: #042c54; -fx-border-radius: 5;" />
+    </VBox>
+
+    <!-- Action Buttons -->
+    <VBox alignment="CENTER" layoutX="695.0" layoutY="450.0" spacing="15">
+        <Button fx:id="ajouterContratBtn" onAction="#ajouterContrat" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Ajouter Contrat" />
+        <Button fx:id="modifierContratBtn" onAction="#modifierContrat" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Modifier Contrat" />
+        <Button fx:id="supprimerContratBtn" onAction="#supprimerContrat" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Supprimer Contrat" />
+        <Button fx:id="genererPDFBtn" onAction="#genererPDF" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Générer PDF" />
+    </VBox>
+
+    <!-- QR Code Section -->
+    <VBox alignment="CENTER" layoutX="950.0" layoutY="450.0" spacing="10" style="-fx-background-color: rgba(255, 255, 255, 0.9); -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0);">
+        <Label style="-fx-font-weight: bold; -fx-text-fill: #042c54;" text="QR Code du Contrat" />
+        <ImageView fx:id="qrCodeImageView" fitHeight="150.0" fitWidth="150.0" />
+    </VBox>
+
+</AnchorPane>
