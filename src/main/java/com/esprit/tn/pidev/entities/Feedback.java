@@ -1,38 +1,58 @@
 package com.esprit.tn.pidev.entities;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Feedback {
+public class Forum {
     private int id;
-    private int ticketId; // Référence à la table ticketreclamation (colonne id)
-    private int rating;
-    private String comment;
-    private Timestamp dateFeedback;
+    private String nom;
+    private String description;
+    private LocalDate date;
+    private List<Feedback> feedback;
 
-    // Constructeurs
-    public Feedback() {}
+    // Constructeur
+    public Forum() {
+        this.feedback = new ArrayList<>();
+    }
 
-    public Feedback(int id, int ticketId, int rating, String comment, Timestamp dateFeedback) {
+    public Forum(int id, String nom, String description, LocalDate date) {
         this.id = id;
-        this.ticketId = ticketId;
-        this.rating = rating;
-        this.comment = comment;
-        this.dateFeedback = dateFeedback;
+        this.nom = nom;
+        this.description = description;
+        this.date = date;
+        this.feedback = new ArrayList<>();
     }
 
     // Getters et Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public int getTicketId() { return ticketId; }
-    public void setTicketId(int ticketId) { this.ticketId = ticketId; }
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
 
-    public int getRating() { return rating; }
-    public void setRating(int rating) { this.rating = rating; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public String getComment() { return comment; }
-    public void setComment(String comment) { this.comment = comment; }
+    public LocalDate getDate() { return date; }
+    public void setDate(LocalDate date) { this.date = date; }
 
-    public Timestamp getDateFeedback() { return dateFeedback; }
-    public void setDateFeedback(Timestamp dateFeedback) { this.dateFeedback = dateFeedback; }
+    public List<Feedback> getFeedback() { return feedback; }
+    public void setFeedback(List<Feedback> feedback) { this.feedback = feedback; }
+
+    // Méthodes pour gérer la liste des feedbacks
+    public void addFeedback(Feedback f) {
+        if (!this.feedback.contains(f)) {
+            this.feedback.add(f);
+            f.setForum(this);
+        }
+    }
+
+    public void removeFeedback(Feedback f) {
+        if (this.feedback.remove(f)) {
+            if (f.getForum() == this) {
+                f.setForum(null);
+            }
+        }
+    }
 }
